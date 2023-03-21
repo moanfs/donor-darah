@@ -15,8 +15,8 @@
     <section class="container-fluid">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="assets/img/logo.png" alt="Logo" width="28" class="d-inline-block align-text-top">
+                <a class="navbar-brand" href="/">
+                    <img src="<?= base_url() ?>/assets/img/logo.png" alt="Logo" width="28" class="d-inline-block align-text-top">
                     donortree
                 </a>
 
@@ -55,13 +55,30 @@
                         </li>
                     </ul>
                     <ul class="narbar-nav ms-auto mb-2 mb-lg-0">
-                        <button class="btn btn-outline-danger btn-sm">Sign in</button>
+                        <button id="modal" class="btn btn-outline-danger btn-sm">Sign in</button>
                     </ul>
                 </div>
             </div>
         </nav>
     </section>
 
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Main Content -->
     <div class="main-content">
         <?= $this->renderSection('content'); ?>

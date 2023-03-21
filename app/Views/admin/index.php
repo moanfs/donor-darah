@@ -1,7 +1,7 @@
 <?= $this->extend('template/admin'); ?>
 
 <?= $this->Section('title') ?>
-<title>Beranda Admin - Donor Darah</title>
+<title>Beranda - Admin Donor Darah</title>
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>

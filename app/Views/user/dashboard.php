@@ -1,7 +1,7 @@
 <?= $this->extend('template/user') ?>
 <!-- title -->
 <?= $this->Section('title') ?>
-<title>Beranda &mdash; Donor Darah</title>
+<title>Beranda - Donor Darah</title>
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
