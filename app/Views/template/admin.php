@@ -20,8 +20,8 @@
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="logo">
-                            <a href="index.html"><img src="<?= base_url() ?>/dist/assets//images/logo/logo.svg" alt="Logo" srcset=""></a>
+                        <div class="logo fs-5">
+                            <a href="index.html"><img src="<?= base_url() ?>/assets/img/logo.png" alt="Logo" srcset="">Donortree</a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -200,6 +200,20 @@
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="table-datatable-jquery.html">Datatable (jQuery)</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-pen-fill"></i>
+                                <span>Login</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="form-editor-quill.html">Profile</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="<?= site_url('admin/login'); ?>">Logout</a>
                                 </li>
                             </ul>
                         </li>

@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'Dashboard::index');
+    $routes->match(['get', 'post'], 'login', 'AuthLogin::attempLogin');
 });
 /*
  * --------------------------------------------------------------------
