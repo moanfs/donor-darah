@@ -55,26 +55,27 @@
                         </li>
                     </ul>
                     <ul class="narbar-nav ms-auto mb-2 mb-lg-0">
-                        <button id="modal" class="btn btn-outline-danger btn-sm">Sign in</button>
+                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm">Sign in</button>
                     </ul>
                 </div>
             </div>
         </nav>
     </section>
 
-    <div class="modal" tabindex="-1">
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h1 class="modal-title fs-5" id="loginModal">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    ...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
         </div>
