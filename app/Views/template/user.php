@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <title>Donor Darah</title> -->
     <?= $this->renderSection('title'); ?>
-    <link rel="stylesheet" href="<?= base_url(); ?>/assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/node_modules/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/bootstrap/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/style.css">
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
 </head>
 
@@ -85,7 +85,7 @@
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- end Content -->
-    <script src="/assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
