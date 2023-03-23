@@ -85,7 +85,7 @@
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- end Content -->
-    <script src="assets//bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
