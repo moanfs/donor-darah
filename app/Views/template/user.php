@@ -13,13 +13,12 @@
 
 <body>
     <section class="container-fluid">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
+        <nav class="navbar fixed-top navbar-expand-lg">
+            <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="<?= base_url() ?>/assets/img/logo.png" alt="Logo" width="28" class="d-inline-block align-text-top">
                     donortree
                 </a>
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,7 +54,8 @@
                         </li>
                     </ul>
                     <ul class="login narbar-nav ms-auto mb-2 mb-lg-0">
-                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger">Sign in</button>
+                        <!-- <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm">Daftar</button> -->
+                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm fw-semibold px-4">Masuk</button>
                     </ul>
                 </div>
             </div>
@@ -85,6 +85,53 @@
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- end Content -->
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="text-center text-lg-start bg-white text-muted">
+            <!-- Section: Social media -->
+            <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <!-- Left -->
+                <div class="me-5 d-none d-lg-block">
+                    <span>Get connected with us on social networks:</span>
+                </div>
+                <!-- Left -->
+
+                <!-- Right -->
+                <div>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+                © <?= date('Y') ?> donortree
+            </div>
+            <!-- Copyright -->
+        </footer>
+    </div>
+    <!-- Footer -->
+
+
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
