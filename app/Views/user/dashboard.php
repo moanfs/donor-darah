@@ -5,7 +5,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
-<div class="container mt-5">
+<div class="container mt-5" id="beranda">
     <div class="row">
         <div class="col-sm-6 col-md-6">
             <img class="img-fluid" src="assets/img/gambar1.png" alt="">
