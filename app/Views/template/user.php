@@ -29,13 +29,13 @@
                             <a class="nav-link" aria-current="page" href="#">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tentang Kami</a>
+                            <a class="nav-link" href="#about">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Stok Darah</a>
+                            <a class="nav-link" href="#stokdarah">Stok Darah</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Berita</a>
+                            <a class="nav-link" href="#berita">Berita</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,7 +51,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Kontak</a>
+                            <a class="nav-link" href="#kontak">Kontak</a>
                         </li>
                     </ul>
                     <ul class="login narbar-nav ms-auto mb-2 mb-lg-0">
