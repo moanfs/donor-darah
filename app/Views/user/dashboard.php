@@ -20,7 +20,7 @@
 </div>
 
 <div class="container mt-5">
-    <div class="card text-bg-danger rounded-5">
+    <div class="card">
         <div class="card-body ">
             <div class="row text-center p-3">
                 <div class="col-sm-4 col-md-4">

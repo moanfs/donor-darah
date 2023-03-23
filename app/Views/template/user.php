@@ -54,8 +54,8 @@
                             <a class="nav-link" href="#">Kontak</a>
                         </li>
                     </ul>
-                    <ul class="narbar-nav ms-auto mb-2 mb-lg-0">
-                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm">Sign in</button>
+                    <ul class="login narbar-nav ms-auto mb-2 mb-lg-0">
+                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger">Sign in</button>
                     </ul>
                 </div>
             </div>
