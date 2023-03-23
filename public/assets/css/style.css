@@ -1,0 +1,13 @@
+a, .nav-link, .dropdown-item{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+a, .nav-link:hover{
+    color: #BC0E0E;
+}
+
+a, .dropdown-item:hover{
+    color: #BC0E0E;
+}
