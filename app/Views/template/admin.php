@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/admin/css/main/app-dark.css">
     <link rel="shortcut icon" href="assets/admin/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/admin/images/logo/favicon.png" type="image/png">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo fs-5">
-                            <a href="index.html"><img src="assets/img/logo.png" alt="Logo" srcset="">Donortree</a>
+                            <a href="<?= site_url('admin'); ?>"><img src="assets/img/logo.png" alt="Logo" srcset="">Donortree</a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">

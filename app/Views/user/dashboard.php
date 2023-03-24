@@ -1,7 +1,7 @@
 <?= $this->extend('template/user') ?>
 <!-- title -->
 <?= $this->Section('title') ?>
-<title>Beranda - Donor Darah</title>
+<title>Donortree</title>
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
@@ -14,7 +14,7 @@
             <h4>Langka Kecil Untuk Memberi</h4>
             <h2>Dampak Besar</h2>
             <p>Ayo donor darah sekarang dan berikan dampak yang besar bagi yang membutuhkan</p>
-            <a href="#" class="btn btn-danger rounded-4">DONATE NOW</a>
+            <a href="#" class="btn btn-danger rounded-4 shadow btn-donate">DONATE NOW</a>
         </div>
     </div>
 </div>
@@ -61,8 +61,8 @@
 </div>
 
 <div class="container mt-5" id="stokdarah">
-    <div class="stokdarah text-center">
-        <h2>Stok Darah</h2>
+    <div class="stokdarah">
+        <h2 class="text-center">Stok Darah</h2>
         <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia sapiente nisi consequatur quidem rem deleniti provident nemo dolores temporibus ipsa, non eum eaque. Rerum, voluptas! Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia consequatur, consectetur ut illum sapiente fugiat natus iste, voluptates asperiores omnis nam maiores laudantium! Quam quod impedit, minima architecto tempora quaerat velit natus atque illo libero tenetur assumenda, esse numquam. Accusantium.</p>
     </div>
 </div>

@@ -8,4 +8,9 @@ class Home extends BaseController
     {
         return view('user/dashboard');
     }
+
+    public function faq()
+    {
+        return view('user/faq');
+    }
 }

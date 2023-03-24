@@ -8,6 +8,7 @@
     <?= $this->renderSection('title'); ?>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
 </head>
 
@@ -17,7 +18,7 @@
             <div class="container">
                 <a class="navbar-brand" href="/">
                     <img src="<?= base_url() ?>/assets/img/logo.png" alt="Logo" width="28" class="d-inline-block align-text-top">
-                    donortree
+                    donor<span class="text-danger">tree</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,32 +26,35 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarText">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#beranda">Beranda</a>
+                            <a class="nav-link" aria-current="page" href="/#beranda">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">Tentang Kami</a>
+                            <a class="nav-link" href="/#about">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#stokdarah">Stok Darah</a>
+                            <a class="nav-link" href="/#stokdarah">Stok Darah</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#berita">Berita</a>
+                            <a class="nav-link" href="/#berita">Berita</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Info Donor
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Info Donor Darah</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('faq'); ?>">FAQ Donor Darah</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Kebijakan Privasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#kontak">Kontak</a>
+                            <a class="nav-link" href="/#kontak">Kontak</a>
                         </li>
                     </ul>
                     <ul class="login narbar-nav ms-auto mb-2 mb-lg-0">
@@ -63,19 +67,20 @@
     </section>
 
     <!-- Modal -->
-    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="loginModal" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModal">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <h5>Masuk Ke Donortree</h5>
+                    <p>Saya ingin masuk sebagai</p>
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <a href="<?= site_url('login'); ?>" class="btn btn-success py-3"><i class="bi bi-people"></i> User</a>
+                        <h5 class="text-center">Atau</h5>
+                        <a href="<?= site_url('admin/login'); ?>" class="btn btn-outline-danger py-3"><i class="bi bi-person-gear"></i> Administrator</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,22 +105,22 @@
                 <!-- Right -->
                 <div>
                     <a href="" class="me-4 link-secondary">
-                        <i class="fab fa-facebook-f"></i>
+                        <i class="bi bi-facebook-f"></i>
                     </a>
                     <a href="" class="me-4 link-secondary">
-                        <i class="fab fa-twitter"></i>
+                        <i class="bi bi-twitter"></i>
                     </a>
                     <a href="" class="me-4 link-secondary">
-                        <i class="fab fa-google"></i>
+                        <i class="bi bi-google"></i>
                     </a>
                     <a href="" class="me-4 link-secondary">
                         <i class="bi bi-instagram"></i>
                     </a>
                     <a href="" class="me-4 link-secondary">
-                        <i class="fab fa-linkedin"></i>
+                        <i class="bi bi-linkedin"></i>
                     </a>
                     <a href="" class="me-4 link-secondary">
-                        <i class="fab fa-github"></i>
+                        <i class="bi bi-github"></i>
                     </a>
                 </div>
                 <!-- Right -->

@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Admin</title>
-    <link rel="stylesheet" href="<?= base_url() ?>/dist/assets/css/main/app.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/dist/assets/css/pages/auth.css">
-    <link rel="shortcut icon" href="<?= base_url() ?>/dist/assets/images/logo/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="<?= base_url() ?>/dist/assets/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/assets/admin/css/main/app.css">
+    <link rel="stylesheet" href="/assets/admin/css/pages/auth.css">
+    <link rel="shortcut icon" href="/assets/admin/images/logo/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="/assets/admin/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
     <div id="auth">
-
-        <div class="row h-100">
+        <div class="row">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo fs-3 fw-bold">
@@ -23,7 +23,7 @@
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
-                    <form action="index.html">
+                    <form action="<?= site_url('admin'); ?>">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" placeholder="Username">
                             <div class="form-control-icon">
@@ -45,8 +45,6 @@
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a href="auth-register.html" class="font-bold">Sign
-                                up</a>.</p>
                         <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
                     </div>
                 </div>
@@ -57,7 +55,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 
