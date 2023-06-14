@@ -31,12 +31,24 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('faq', 'Home::faq');
-$routes->match(['get', 'post'], 'login', 'AuthLogin::attempLogin');
+$routes->get('login', 'Auth::login');
+$routes->post('login', 'Auth::attempLogin');
+$routes->get('register', 'Auth::register');
+$routes->post('register', 'Auth::attempRegister');
+$routes->get('logout', 'Auth::logout');
+$routes->get('kebijakan-privasi', 'Home::privasi');
+$routes->get('jadwal-donor', 'Jadwal::index');
+$routes->get('berita', 'Berita::index');
 
+$routes->get('auth', 'Admin\Auth::login');
+$routes->post('auth', 'Admin\Auth::attempLogin');
+$routes->get('auth-out', 'Admin\Auth::logout');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'Dashboard::index');
-    $routes->match(['get', 'post'], 'login', 'AuthLogin::attempLogin');
+    // $routes->get('login', 'Auth::login');
+    // $routes->post('login', 'Auth::attempLogin');
+    // $routes->get('logout', 'Auth::logout');
 });
 /*
  * --------------------------------------------------------------------

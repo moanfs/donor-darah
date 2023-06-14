@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 
 <body>
@@ -38,11 +39,11 @@
                             <a class="nav-link" href="/#berita">Berita</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Info Donor
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Info Donor Darah</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('jadwal-donor'); ?>">Jadwal Donor Darah</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -50,7 +51,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Kebijakan Privasi</a></li>
+                                <li><a class="dropdown-item" href="<?= site_url('kebijakan-privasi'); ?>">Kebijakan Privasi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -59,8 +60,29 @@
                     </ul>
                     <ul class="login narbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm">Daftar</button> -->
-                        <button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-outline-danger btn-sm fw-semibold px-4">Masuk</button>
+                        <?php if (!userLogin()) : ?>
+                            <a class="btn btn-outline-danger btn-sm fw-semibold px-4" href="<?= site_url('login'); ?>">Masuk</a>
+                        <?php else : ?>
+                            <ul class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href=""><img src="assets/img/profile.png" height="40" class="rounded-circle me-1" alt="image profile" aria-expanded="false" data-bs-offset="10,20"></a>
+                                <ul class="dropdown-menu">
+
+                                    <h5 class="ps-1 text-center"><?= userLogin()->nama_depan; ?></h5>
+
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="<?= site_url('profile'); ?>"><i class="bi bi-person me-2"></i></i> Profil</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('pengaturan'); ?>"><i class="bi bi-gear me-2"></i></i> Pengaturan</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="<?= site_url('logout'); ?>"><i class="bi bi-box-arrow-left me-2"></i></i> Keluar</a></li>
+                                </ul>
+                            </ul>
+                        <?php endif; ?>
                     </ul>
+
                 </div>
             </div>
         </nav>
@@ -136,9 +158,8 @@
     </div>
     <!-- Footer -->
 
-
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 </body>
 
 </html>

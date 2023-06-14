@@ -13,4 +13,9 @@ class Home extends BaseController
     {
         return view('user/faq');
     }
+
+    public function privasi()
+    {
+        return view('user/kebijakan');
+    }
 }
