@@ -74,38 +74,40 @@
         </div>
         <div class="card-body m-2">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <div>
+                    <label for="filter-lokasi">lokasi</label>
+                    <select name="filter-lokasi" id="filter-lokasi" class="form-control">
+                        <option value="">Pilih Lokasi</option>
+                        @foreach($list_lokasi as $lokasi)
+                        <option value="">{{$lokasi->nama}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <table class="table table-striped" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">Wilayah</th>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama Kegiatan</th>
                             <th scope="col">Lokasi</th>
+                            <th scope="col">Kab/Kota</th>
                             <th scope="col">Jadwal</th>
                             <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">Aceh</th>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Aceh</th>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Aceh</th>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                            <td>99</td>
-                        </tr>
+                        <?php foreach ($jadwal as $key => $value) : ?>
+                            <tr>
+                                <td><?= $key + 1; ?></td>
+                                <td><?= $value['nama']; ?></td>
+                                <td><?= $value['lokasi']; ?></td>
+                                <td><?= $value['kab_kota']; ?></td>
+                                <td><?= $value['date']; ?> / <?= $value['time']; ?></td>
+                                <td><?= $value['date_end']; ?></td>
+                                <td><a href="#" class="btn btn-primary">Daftar</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+
                 </table>
             </div>
 

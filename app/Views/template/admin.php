@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,12 @@
 
     <?= $this->renderSection('title'); ?>
 
-    <link rel="stylesheet" href="assets/admin/css/main/app.css">
-    <link rel="stylesheet" href="assets/admin/css/main/app-dark.css">
-    <link rel="shortcut icon" href="assets/admin/images/logo/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/admin/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/main/app.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/main/app-dark.css'); ?> ">
+    <link rel="shortcut icon" href="<?= site_url(); ?>/assets/img/logo.png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="<?= base_url('assets/admin/images/logo/favicon.png'); ?>" type="image/png"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo fs-5">
-                            <a href="<?= site_url('admin'); ?>"><img src="assets/img/logo.png" alt="Logo" srcset="">Donortree</a>
+                            <a href="<?= site_url('admin'); ?>"><img src="<?= base_url(); ?>/assets/img/logo.png" alt="Logo" srcset="">Donortree</a>
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -58,28 +59,28 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="<?= site_url('admin'); ?>" class='sidebar-link'>
+                            <a href="<?= site_url('admin/jadwal-donor'); ?>" class='sidebar-link'>
                                 <i class="bi bi-calendar-check"></i>
                                 <span>jadwal Donor</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="<?= site_url('admin'); ?>" class='sidebar-link'>
+                            <a href="<?= site_url('admin/stok-darah'); ?>" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-arrow-down"></i>
                                 <span>Stok Darah</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="<?= site_url('admin'); ?>" class='sidebar-link'>
+                            <a href="<?= site_url('admin/pengguna'); ?>" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>Pengguna</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="<?= site_url('admin'); ?>" class='sidebar-link'>
+                            <a href="<?= site_url('admin/berita'); ?>" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
                                 <span>Berita</span>
                             </a>
@@ -93,10 +94,13 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="<?= site_url('profile'); ?>">Profile</a>
+                                    <a href="<?= site_url('admin/profile/') . userLogin()->id_user . '/' . userLogin()->slug ?>">Profile</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a href="<?= site_url('logout'); ?>">Logout</a>
+                                    <a href="<?= site_url('admin/setting-profile/') . userLogin()->id_user . '/' . userLogin()->slug ?>">Setting</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#border-less">Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -127,8 +131,40 @@
             </footer>
         </div>
     </div>
-    <script src="assets/admin/js/bootstrap.js"></script>
-    <script src="assets/admin/js/app.js"></script>
+    <!--BorderLess Modal Modal -->
+    <div class="modal fade text-left modal-borderless" id="border-less" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Logout</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center">Anda yakin ingin keluar!!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Close</span>
+                    </button>
+                    <!-- <button type="button" class="" data-bs-dismiss="modal"> -->
+                    <!-- <i class="bx bx-check d-block d-sm-none"></i> -->
+                    <a class="btn btn-danger" href="<?= site_url('logout'); ?>">logout</a>
+                    <!-- </button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="<?= base_url(); ?>/assets/admin/js/bootstrap.js"></script>
+    <script src="<?= base_url(); ?>/assets/admin/js/app.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 
 </body>
 

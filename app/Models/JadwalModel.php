@@ -4,19 +4,19 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class JadwalModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
-    protected $primaryKey       = 'id_user';
+    protected $table            = 'jadwal_donor';
+    protected $primaryKey       = 'id_jadwal';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'slug', 'nama_depan', 'nama_belakang', 'usia', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'email',
-        'phone', 'goldar', 'pass_hash', 'img_profile', 'active', 'auth_group', 'created_at', 'updated_at', 'deleted_at'
+        'nama', 'slug', 'date', 'time', 'date_end', 'time_end', 'kab_kota', 'provinsi', 'lokasi',
+        'desc', 'updated_at', 'created_at', 'deleted_at'
     ];
 
     // Dates
@@ -32,17 +32,9 @@ class UserModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    public function getAllUser()
+    public function getAllJadwal()
     {
-        return $this->db->table('users')
-            ->where('auth_group', '0')
+        return $this->db->table('jadwal_donor')
             ->get()->getResultArray();
-    }
-
-    public function getProfile($id)
-    {
-        return $this->db->table('users')
-            ->where('id_user', $id)
-            ->get()->getRowObject();
     }
 }

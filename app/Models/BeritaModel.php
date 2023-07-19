@@ -4,19 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class BeritaModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
-    protected $primaryKey       = 'id_user';
+    protected $table            = 'berita';
+    protected $primaryKey       = 'id_berita';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'slug', 'nama_depan', 'nama_belakang', 'usia', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'email',
-        'phone', 'goldar', 'pass_hash', 'img_profile', 'active', 'auth_group', 'created_at', 'updated_at', 'deleted_at'
+        'judul', 'slug', 'lokasi', 'isi', 'img', 'sumber', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     // Dates
@@ -32,17 +31,31 @@ class UserModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    public function getAllUser()
+    public function getAllBerita()
     {
-        return $this->db->table('users')
-            ->where('auth_group', '0')
+        return $this->db->table('berita')
             ->get()->getResultArray();
     }
 
-    public function getProfile($id)
+    public function getOneBerita()
     {
-        return $this->db->table('users')
-            ->where('id_user', $id)
+        return $this->db->table('berita')
+            ->limit(1)
+            ->get()->getResultArray();
+    }
+
+    public function getBacaBerita($id)
+    {
+        return $this->db->table('berita')
+            ->where('id_berita', $id)
             ->get()->getRowObject();
+    }
+
+    public function getBeritalain($id)
+    {
+        return $this->db->table('berita')
+            ->notLike('id_berita', $id)
+            ->limit(5)
+            ->get()->getResultArray();
     }
 }

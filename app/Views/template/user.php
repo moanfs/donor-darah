@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <title>Donor Darah</title> -->
     <?= $this->renderSection('title'); ?>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 </head>
 
@@ -64,7 +64,7 @@
                             <a class="btn btn-outline-danger btn-sm fw-semibold px-4" href="<?= site_url('login'); ?>">Masuk</a>
                         <?php else : ?>
                             <ul class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href=""><img src="assets/img/profile.png" height="40" class="rounded-circle me-1" alt="image profile" aria-expanded="false" data-bs-offset="10,20"></a>
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href=""><img src="<?= base_url(); ?>/assets/img/<?= userLogin()->img_profile; ?>" height="40" class="rounded-circle me-1" alt="image profile" aria-expanded="false" data-bs-offset="10,20"></a>
                                 <ul class="dropdown-menu">
 
                                     <h5 class="ps-1 text-center"><?= userLogin()->nama_depan; ?></h5>
@@ -72,8 +72,8 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= site_url('profile'); ?>"><i class="bi bi-person me-2"></i></i> Profil</a></li>
-                                    <li><a class="dropdown-item" href="<?= site_url('pengaturan'); ?>"><i class="bi bi-gear me-2"></i></i> Pengaturan</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('profile/') . userLogin()->id_user . '/' . userLogin()->slug; ?>"><i class="bi bi-person me-2"></i></i> Profil</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('setting-profile/') . userLogin()->id_user . '/' . userLogin()->slug; ?>"><i class="bi bi-gear me-2"></i></i> Pengaturan</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -157,9 +157,12 @@
         </footer>
     </div>
     <!-- Footer -->
-
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="<?= base_url(); ?>/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 </body>
 
 </html>

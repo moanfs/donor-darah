@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="<?= site_url(); ?>/assets/admin/css/main/app.css">
+    <link rel="stylesheet" href="<?= site_url(); ?>/assets/admin/css/pages/error.css">
+    <link rel="shortcut icon" href="<?= site_url(); ?>/assets/img/logo.png" type="image/x-icon">
     <title><?= lang('Errors.pageNotFound') ?></title>
 
     <style>
@@ -15,6 +19,7 @@
             left: 50%;
             margin-left: -73px;
         }
+
         body {
             height: 100%;
             background: #fafafa;
@@ -22,6 +27,7 @@
             color: #777;
             font-weight: 300;
         }
+
         h1 {
             font-weight: lighter;
             letter-spacing: normal;
@@ -30,6 +36,7 @@
             margin-bottom: 0;
             color: #222;
         }
+
         .wrap {
             max-width: 1024px;
             margin: 5rem auto;
@@ -40,10 +47,12 @@
             border-radius: 0.5rem;
             position: relative;
         }
+
         pre {
             white-space: normal;
             margin-top: 1.5rem;
         }
+
         code {
             background: #fafafa;
             border: 1px solid #efefef;
@@ -51,9 +60,11 @@
             border-radius: 5px;
             display: block;
         }
+
         p {
             margin-top: 1.5rem;
         }
+
         .footer {
             margin-top: 2rem;
             border-top: 1px solid #efefef;
@@ -61,6 +72,7 @@
             font-size: 85%;
             color: #999;
         }
+
         a:active,
         a:link,
         a:visited {
@@ -68,17 +80,30 @@
         }
     </style>
 </head>
-<body>
-    <div class="wrap">
-        <h1>404</h1>
 
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
+<body>
+
+    <?php if (ENVIRONMENT !== 'production') : ?>
+        <div class="wrap">
+            <h1>404</h1>
+            <p>
                 <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif ?>
-        </p>
-    </div>
+            </p>
+        </div>
+    <?php else : ?>
+        <div id="error">
+            <div class="error-page container">
+                <div class="col-md-8 col-12 offset-md-2">
+                    <div class="text-center">
+                        <img class="img-error" src="<?= site_url(); ?>/assets/img/error-404.svg" alt="Not Found">
+                        <h1 class="error-title">NOT FOUND</h1>
+                        <p class='fs-5 text-gray-600'>The page you are looking not found.</p>
+                        <a href="<?= site_url('back'); ?>" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
 </body>
+
 </html>

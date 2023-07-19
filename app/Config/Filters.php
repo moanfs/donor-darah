@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\AdminFilter;
+use App\Filters\LoginFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -22,7 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'AdminFilter'   => AdminFilter::class
+        'AdminFilter'   => AdminFilter::class,
+        'LoginFilter'   => LoginFilter::class
     ];
 
     /**
@@ -63,6 +65,6 @@ class Filters extends BaseConfig
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
     public array $filters = [
-        'AdminFilter'       => ['before'    => ['admin', 'admin/*']]
+        'LoginFilter'       => ['before'    => ['admin', 'admin/*', 'setting-profile', 'setting-profile/*', 'profile', 'profile/*']]
     ];
 }

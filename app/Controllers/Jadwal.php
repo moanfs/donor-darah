@@ -3,11 +3,14 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\JadwalModel;
 
 class Jadwal extends BaseController
 {
     public function index()
     {
-        return view('user/jadwal');
+        $jadwalModel = new JadwalModel();
+        $data['jadwal'] = $jadwalModel->getAllJadwal();
+        return view('user/jadwal', $data);
     }
 }

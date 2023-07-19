@@ -27,7 +27,7 @@
             <h4>Langka Kecil Untuk Memberi</h4>
             <h2>Dampak Besar</h2>
             <p>Ayo donor darah sekarang dan berikan dampak yang besar bagi yang membutuhkan</p>
-            <a href="#" class="btn btn-danger rounded-4 shadow btn-donate"><i class="bi bi-arrow-down-circle"></i> DONATE NOW</a>
+            <a href="<?= site_url('jadwal-donor'); ?>" class="btn btn-danger rounded-4 shadow btn-donate"><i class="bi bi-arrow-down-circle"></i> DONATE NOW</a>
         </div>
     </div>
 </div>
@@ -80,110 +80,27 @@
     <div class="stokdarah">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; info PMI</p>
         <h2 class="text-center">Stok Darah</h2>
-        <div class="table-responsive">
-            <table class="table table-hover">
+        <div class="table-responsive border shadow-sm rounded p-3">
+            <table class="table table-hover" id="myTable">
                 <thead>
                     <tr>
-                        <th scope="col">Wilayah</th>
-                        <th scope="col">A+</th>
-                        <th scope="col">A-</th>
-                        <th scope="col">B+</th>
-                        <th scope="col">B-</th>
-                        <th scope="col">AB+</th>
-                        <th scope="col">AB-</th>
-                        <th scope="col">O+</th>
-                        <th scope="col">O-</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Golongan Darah</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Provinsi</th>
+                        <th scope="col">Kab/Kota</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Aceh</th>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                        <td>99</td>
-                    </tr>
+                    <?php foreach ($stok as $key => $value) : ?>
+                        <tr>
+                            <td><?= $key + 1; ?></td>
+                            <td><?= $value['goldar']; ?></td>
+                            <td><?= $value['jumlah']; ?></td>
+                            <td><?= $value['kab_kota']; ?></td>
+                            <td><?= $value['provinsi']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -195,22 +112,26 @@
         <p class="font-monospace text-center text-danger">&mdash;&mdash; Berita</p>
         <h2 class="text-center">Berita Donortree</h2>
         <div class="clearfix">
-            <img src="assets/img/berita.jpg" class="col-md-6 float-md-end mb-3 ms-md-3" width="200rem" alt="berita">
-            <h5>DOKTERMUDA FK UNS SUSUR KAMPUNG</h5>
-            <span>UDD PMI Kota Surakarta | 30 Jul 22</span>
-            <p>
-                Bersama doktermuda Fakultas Kedokteran UNS dan relawan Siaga Bencana Berbasis Masyarakat kembali melakukan susur kampung 29/07/2022 jumat pagi di kelurahan Semanggi RW 11 Surakarta. Total 77 warga menerima pelayanan pemeriksaan kesehatan, 48 warga diantaranya mendapatkan terapi berupa obat, dan memastikan warga yang lainnya sudah terkontrol rutin baik ke Puskesmas, klinik atau rumah sakit yang ditunjuk sebagai fasilitas pertama.
-                <a href="<?= site_url('berita'); ?>">Baca selengkapnya...</a>
-            </p>
-            <span>sumber :</span>
+            <?php foreach ($berita as $key => $value) : ?>
+                <img src="assets/berita/<?= $value['img']; ?>" class="col-md-6 rounded float-md-end mb-3 ms-md-3" width="200rem" alt="berita">
+                <h5><?= $value['judul']; ?></h5>
+                <span><?= $value['lokasi']; ?></span>
+                <p><?= (str_word_count($value['isi']) > 30 ? substr($value['isi'], 0, 300) : $value['isi']) ?>
+                    <a href="<?= site_url('berita/') . $value['id_berita'] . '/' . $value['slug']; ?>" class="">Baca selengkapnya....</a>
+                </p>
+            <?php endforeach ?>
         </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a href="<?= site_url('berita'); ?>" class="btn btn-primary fw-semibold">lihat berita lainya <i class="bi bi-chevron-double-right"></i></a>
     </div>
 </div>
 
 <div class="container mt-5" id="kontak">
     <div class="kontak">
-        <h2>Kontak Kami</h2>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit odio possimus, eum debitis aut officia. Qui, minus quis voluptate ipsam hic, saepe reprehenderit quidem magni error odit voluptas et unde?
+        <p class="font-monospace text-center text-danger">&mdash;&mdash; Kontak Kami</p>
+        <h2 class="text-center">Kontak Donortree</h2>
+        Jika Anda memiliki pertanyaan atau saran tentang Kebijakan Privasi kami, jangan ragu untuk menghubungi kami di donortree@gmail.com
     </div>
 </div>
 <?= $this->endSection(); ?>
