@@ -133,5 +133,60 @@
             </form>
         </div>
     </div>
+
+    <!-- ganti pasword -->
+    <div class="row col-12 mt-5">
+        <?php if (session()->getFlashdata('successpas')) : ?>
+            <div class="alert alert-info alert-dismissible show fade mx-5">
+                <div class="alert-body text-center">
+                    <?= session()->getFlashdata('successpas'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (session()->getFlashdata('gagalpas')) : ?>
+            <div class="alert alert-danger alert-dismissible show fade mx-5">
+                <div class="alert-body text-center">
+                    <?= session()->getFlashdata('gagalpas'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="col-sm-4 col-md-4 ">
+            <h5>Ganti Password</h5>
+        </div>
+        <div class="col-sm-4 col-md-8 card shadow-sm p-4">
+            <h5>Edit Password</h5>
+            <form action="<?= site_url('edit-profile-password/') . $profile->id_user ?>" method="post">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <label for="passlama" class="col-sm-3 col-form-label">Password Lama</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="passlama" id="passlama">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('passlama'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <label for="passbaru" class="col-sm-3 col-form-label">Password Baru</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" name="passbaru" id="passbaru">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('passbaru'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-grid">
+                            <button type="submit" class="d-block btn btn-primary">Simpan</button>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
 </div>
 <?= $this->endSection(); ?>

@@ -51,6 +51,7 @@ $routes->get('profile/(:num)/(:segment)', 'Profile::index/$1/$1');
 $routes->get('setting-profile/(:num)/(:segment)', 'Profile::settingProfile/$1/$1');
 $routes->post('edit-profile/(:num)', 'Profile::save/$1');
 $routes->post('edit-profile-img/(:num)', 'Profile::updateimg/$1');
+$routes->post('edit-profile-password/(:num)', 'Profile::password/$1');
 $routes->get('auth', 'Admin\Auth::login');
 $routes->post('auth', 'Admin\Auth::attempLogin');
 $routes->get('auth-out', 'Admin\Auth::logout');

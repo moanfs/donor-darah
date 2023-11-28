@@ -80,4 +80,30 @@ class Profile extends BaseController
         }
         return redirect()->back()->with('gagal', 'format gambar tidak sesuai');
     }
+
+    public function password($id)
+    {
+        $user = new UserModel();
+        $data = $user->find($id);
+        $passdatabase = $data['pass_hash'];
+        $rules = [
+            'passlama'  => 'required',
+            'passbaru'  => 'required|min_length[3]'
+        ];
+        if ($this->validate($rules)) {
+            $passlama = $this->request->getPost('passlama');
+            $passbaru = password_hash($this->request->getPost('passbaru'), PASSWORD_DEFAULT);
+            if (password_verify($passlama, $passdatabase)) {
+                $user->save([
+                    'id_user'       => $id,
+                    'pass_hash'     => $passbaru
+                ]);
+                return redirect()->back()->with('successpas', 'password berhasil diganti');
+            } else {
+                return redirect()->back()->with('gagalpas', 'password lama salah');
+            }
+        } {
+            return redirect()->back()->with('gagalpas', 'password tidak boleh kosong');
+        }
+    }
 }

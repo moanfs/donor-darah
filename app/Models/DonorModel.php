@@ -25,4 +25,14 @@ class DonorModel extends Model
     {
         return $this->db->table('pendonor');
     }
+
+    public function getNewPendonor()
+    {
+        $db = \Config\Database::connect();
+        return $db->table('dafat_donor')
+            ->join('users', 'users.id_user=dafat_donor.user_id')
+            ->orderBy('dafat_donor.created_at', 'DESC')
+            ->limit(3)
+            ->get()->getResultObject();
+    }
 }

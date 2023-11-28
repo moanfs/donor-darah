@@ -15,8 +15,10 @@ function getPengguna()
 function getPendonor()
 {
     $db = \Config\Database::connect();
-    return $db->table('pendonor')->countAllResults();
+    return $db->table('dafat_donor')->countAllResults();
 }
+
+
 
 function getStokDarah()
 {
