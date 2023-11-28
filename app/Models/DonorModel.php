@@ -32,6 +32,7 @@ class DonorModel extends Model
         return $db->table('dafat_donor')
             ->join('users', 'users.id_user=dafat_donor.user_id')
             ->orderBy('dafat_donor.created_at', 'DESC')
+            ->groupBy('user_id')
             ->limit(3)
             ->get()->getResultObject();
     }

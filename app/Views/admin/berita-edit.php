@@ -10,6 +10,20 @@
 </div>
 
 <!-- // Basic multiple Column Form section start -->
+<?php if (session()->getFlashdata('success')) : ?>
+    <div class="alert alert-info alert-dismissible show fade mx-5">
+        <div class="alert-body text-center">
+            <?= session()->getFlashdata('success'); ?>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (session()->getFlashdata('gagal')) : ?>
+    <div class="alert alert-danger alert-dismissible show fade mx-5">
+        <div class="alert-body text-center">
+            <?= session()->getFlashdata('gagal'); ?>
+        </div>
+    </div>
+<?php endif; ?>
 <section id="multiple-column-form">
     <div class="row match-height">
         <div class="col-12">

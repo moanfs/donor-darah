@@ -22,7 +22,9 @@ class Berita extends BaseController
 
     public function save()
     {
+        $berita = new BeritaModel();
         $data = $this->request->getPost();
+
         $rules = [
             'judul'     => ['rules' => 'required|', 'errors' => ['required' => 'judul berita tidak boleh kosong']],
             'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi berita tidak boleh kosong']],
@@ -30,7 +32,7 @@ class Berita extends BaseController
             'isi'       => ['rules' => 'required|', 'errors' => ['required' => 'isi berita tidak boleh kosong']],
             'sumber'    => ['rules' => 'required|', 'errors' => ['required' => 'sumber berita tidak boleh kosong']],
         ];
-        $berita = new BeritaModel();
+
         if ($this->validate($rules)) {
             $slug = url_title($data['judul'], '-', true);
             $image = $this->request->getFile('img');
@@ -63,8 +65,9 @@ class Berita extends BaseController
     public function update($id)
     {
         $data = $this->request->getPost();
-        // dd($data);
+        $imgnew = $this->request->getFile('img');
         $berita = new BeritaModel();
+
         $rules = [
             'judul'     => ['rules' => 'required|', 'errors' => ['required' => 'judul berita tidak boleh kosong']],
             'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi berita tidak boleh kosong']],
@@ -78,35 +81,45 @@ class Berita extends BaseController
             'isi'       => ['rules' => 'required|', 'errors' => ['required' => 'isi berita tidak boleh kosong']],
             'sumber'    => ['rules' => 'required|', 'errors' => ['required' => 'sumber berita tidak boleh kosong']],
         ];
-
-        if ($this->validate($rulesimg)) {
-            $slug = url_title($data['judul'], '-', true);
-            $image = $this->request->getFile('img');
-            $gambar = $image->getRandomName();
-            $image->move('assets/berita/', $gambar);
-            $berita->save([
-                'id_berita' => $id,
-                'judul'     => $data['judul'],
-                'slug'      => $slug,
-                'lokasi'    => $data['lokasi'],
-                'img'       => $gambar,
-                'isi'       => $data['isi'],
-                'sumber'    => $data['sumber'],
-            ]);
-            return 'berhasil edit gambar';
-        } elseif ($this->validate($rules)) {
-            $slug = url_title($data['judul'], '-', true);
-            $berita->save([
-                'id_berita' => $id,
-                'judul'     => $data['judul'],
-                'slug'      => $slug,
-                'lokasi'    => $data['lokasi'],
-                'isi'       => $data['isi'],
-                'sumber'    => $data['sumber'],
-            ]);
-            return 'berhasil edit';
+        if ($imgnew->isValid()) {
+            if ($this->validate($rulesimg)) {
+                $slug = url_title($data['judul'], '-', true);
+                $image = $this->request->getFile('img');
+                $gambar = $image->getRandomName();
+                $image->move('assets/berita/', $gambar);
+                $berita->save([
+                    'id_berita' => $id,
+                    'judul'     => $data['judul'],
+                    'slug'      => $slug,
+                    'lokasi'    => $data['lokasi'],
+                    'img'       => $gambar,
+                    'isi'       => $data['isi'],
+                    'sumber'    => $data['sumber'],
+                ]);
+                return redirect()->back()->with('success', 'Berhasil edit berita');
+            }
+            return redirect()->back()->with('gagal', 'gagal edit berita, periksa apakah data yang dimasukkan sudah benar');
         } else {
-            return 'gagal edit';
+            if ($this->validate($rules)) {
+                $slug = url_title($data['judul'], '-', true);
+                $berita->save([
+                    'id_berita' => $id,
+                    'judul'     => $data['judul'],
+                    'slug'      => $slug,
+                    'lokasi'    => $data['lokasi'],
+                    'isi'       => $data['isi'],
+                    'sumber'    => $data['sumber'],
+                ]);
+                return redirect()->back()->with('success', 'Berhasil edit berita');
+            }
+            return redirect()->back()->with('gagal', 'gagal edit berita, periksa apakah data yang dimasukkan sudah benar');
         }
+    }
+
+    public function delete($id)
+    {
+        $berita = new BeritaModel();
+        $berita->delete(['id_berita' => $id]);
+        return redirect()->back()->with('message', 'Berhasil Hapus Berita');
     }
 }

@@ -6,7 +6,7 @@
 
 <?= $this->Section('content'); ?>
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3>Dashboard</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -93,7 +93,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h4>Pendaftar Baru</h4>
+                    <h4>Pendaftar Donor Baru</h4>
                 </div>
                 <div class="card-content pb-4">
                     <?php foreach ($donor as $data) : ?>

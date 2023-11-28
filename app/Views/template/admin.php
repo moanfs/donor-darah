@@ -90,7 +90,7 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <img src="<?= site_url('assets/img/' . userLogin()->img_profile); ?>" alt="" height="36" class="rounded-circle me-1">
+                                <img src="<?= site_url('assets/img/' . userLogin()->img_profile); ?>" alt="" height="36" width="36" class="rounded-circle me-1">
                                 <span>Akun</span>
                             </a>
                             <ul class="submenu ">

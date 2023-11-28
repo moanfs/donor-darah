@@ -62,25 +62,33 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->get('form-jadwal', 'Jadwal::new');
     $routes->post('add-jadwal', 'Jadwal::save');
     $routes->get('edit-jadwal/(:num)/', 'Jadwal::edit/$1');
+
     $routes->get('stok-darah', 'Stok::index');
     $routes->get('stok-darah/show/(:num)', 'Stok::show/$1');
     $routes->get('stok-darah/edit/(:num)', 'Stok::edit/$1');
     $routes->post('stok-darah/edit/(:num)', 'Stok::update/$1');
     $routes->get('form-stok-darah', 'Stok::new');
     $routes->post('add-darah', 'Stok::save');
-    $routes->post('kabupaten', 'Jadwal::kabupaten');
+
+
     $routes->get('pengguna', 'Pengguna::index');
     $routes->get('pengguna/show/(:num)', 'Pengguna::show/$1');
     $routes->post('pengguna/edit/(:num)', 'Pengguna::edit/$1');
     $routes->post('pengguna/(:num)', 'Pengguna::delete/$1');
+
     $routes->get('berita', 'Berita::index');
     $routes->get('berita/edit/(:num)', 'Berita::edit/$1');
     $routes->post('berita/edit/(:num)', 'Berita::update/$1');
-    $routes->get('admin/edit-berita/', 'Berita::edit');
     $routes->get('form-berita', 'Berita::new');
     $routes->post('add-berita', 'Berita::save');
+    $routes->post('berita/delete/(:num)', 'Berita::delete/$1');
+
     $routes->get('profile/(:num)/(:segment)', 'Profile::index/$1/$1');
     $routes->post('profile/(:num)', 'Profile::update/$1');
+    $routes->post('profile-password/(:num)', 'Profile::password/$1');
+    $routes->post('profile-img/(:num)', 'Profile::updateimg/$1');
+
+    $routes->post('kabupaten', 'Jadwal::kabupaten');
     // $routes->
 });
 /*

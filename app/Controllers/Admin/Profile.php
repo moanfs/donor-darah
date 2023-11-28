@@ -45,4 +45,49 @@ class Profile extends BaseController
             return redirect()->back();
         }
     }
+
+    public function updateimg($id)
+    {
+        $rules = [
+            'img_profile'   => ['rules' => 'uploaded[img_profile]|max_size[img_profile,2048]|ext_in[img_profile,png,jpg,jpeg]', 'errors' => ['uploaded' => 'gambar berita tidak boleh kosong', 'max_size' => 'ukuran maksimal 2MB', 'ext_in' => 'file hanya boleh png, jpg dan jpeg']]
+        ];
+        if ($this->validate($rules)) {
+            $user = new UserModel();
+            $image = $this->request->getFile('img_profile');
+            $gambar = $image->getRandomName();
+            $image->move('assets/img/', $gambar);
+            $user->save([
+                'id_user'   => $id,
+                'img_profile'   => $gambar
+            ]);
+            return redirect()->back()->with('success', 'Foto Berhasil Diganti');
+        }
+        return redirect()->back()->with('gagal', 'format gambar tidak sesuai');
+    }
+
+    public function password($id)
+    {
+        $user = new UserModel();
+        $data = $user->find($id);
+        $passdatabase = $data['pass_hash'];
+        $rules = [
+            'passlama'  => 'required',
+            'passbaru'  => 'required|min_length[3]'
+        ];
+        if ($this->validate($rules)) {
+            $passlama = $this->request->getPost('passlama');
+            $passbaru = password_hash($this->request->getPost('passbaru'), PASSWORD_DEFAULT);
+            if (password_verify($passlama, $passdatabase)) {
+                $user->save([
+                    'id_user'       => $id,
+                    'pass_hash'     => $passbaru
+                ]);
+                return redirect()->back()->with('successpas', 'password berhasil diganti');
+            } else {
+                return redirect()->back()->with('gagalpas', 'password lama salah');
+            }
+        } {
+            return redirect()->back()->with('gagalpas', 'password tidak boleh kosong');
+        }
+    }
 }
