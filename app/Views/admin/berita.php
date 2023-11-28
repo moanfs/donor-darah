@@ -36,7 +36,7 @@
                                         <td><?= $value['judul']; ?></td>
                                         <td><?= $value['lokasi']; ?></td>
                                         <td><?= $value['created_at']; ?></td>
-                                        <td><a href="<?= site_url('admin/edit-berita/') . $value['slug']; ?>" class="btn btn-info">edit</a></td>
+                                        <td><a href="<?= site_url('admin/berita/edit/') . $value['id_berita']; ?>" class="btn btn-info"><i class="bi bi-pencil"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

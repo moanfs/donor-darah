@@ -25,8 +25,9 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Usia</th>
                                     <th scope="col">Jenis Kelamin</th>
-                                    <th scope="col">Tempat Lahir</th>
                                     <th scope="col">Gol Darah</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,8 +37,14 @@
                                         <td><?= $value['nama_depan']; ?> <?= $value['nama_belakang']; ?></td>
                                         <td><?= $value['usia']; ?></td>
                                         <td><?= $value['jenis_klamin']; ?></td>
-                                        <td><?= $value['tempat_lahir']; ?></td>
                                         <td><?= $value['goldar']; ?></td>
+                                        <td><?php if ($value['active'] == 1) : ?>
+                                                <p>Aktif</p>
+                                            <?php else : ?>
+                                                <p>Tidak Aktif</p>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><a href="<?= site_url('admin/pengguna/show/') . $value['id_user']; ?>">Lihat</a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

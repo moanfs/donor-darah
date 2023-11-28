@@ -1,12 +1,12 @@
 <?= $this->extend('template/admin'); ?>
 
 <?= $this->Section('title') ?>
-<title>From Jadwal - Admin Donor Darah</title>
+<title>From Edit Jadwal - Admin Donor Darah</title>
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
 <div class="page-heading">
-    <h3>Form Tambah Jadwal Donor</h3>
+    <h3>Form Edit Jadwal Donor</h3>
 </div>
 
 <!-- // Basic multiple Column Form section start -->
@@ -24,7 +24,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="first-name-colum" class="form-label">Nama Kegiatan</label>
-                                        <input type="text" id="first-name-colum" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="nama kegiatan" name="nama" value="<?= set_value('nama'); ?>">
+                                        <input type="text" id="first-name-colum" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="nama kegiatan" name="nama" value="<?= $jadwal->nama ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('nama'); ?>
                                         </div>
@@ -33,7 +33,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="country-floating" class="form-label">Lokasi</label>
-                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" name="lokasi" placeholder="lokasi" value="<?= set_value('lokasi'); ?>">
+                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" name="lokasi" placeholder="lokasi" value="<?= $jadwal->lokasi ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('lokasi'); ?>
                                         </div>
@@ -45,7 +45,7 @@
                                         <select class="form-select" name="provinsi[]" id="provinsi" aria-label="Default select example">
                                             <option selected>Pilih Provinsi</option>
                                             <?php foreach ($provinsi as $value) : ?>
-                                                <option value="<?= $value->id; ?>"><?= $value->name; ?></option>
+                                                <option value="<?= $value->id; ?>" <?php if ($value->id == $jadwal->provinsi) : ?>selected <?php endif; ?>><?= $value->name; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -60,7 +60,7 @@
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">Deskripsi</label>
-                                        <input type="text" id="last-name-colu" class="form-control <?= ($validation->hasError('desc')) ? 'is-invalid' : ''; ?>" name="desc" value="<?= set_value('desc'); ?>">
+                                        <input type="text" id="last-name-colu" class="form-control <?= ($validation->hasError('desc')) ? 'is-invalid' : ''; ?>" name="desc" value="<?= $jadwal->desc ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('desc'); ?>
                                         </div>
@@ -70,7 +70,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">Tanggal Kegiatan</label>
-                                        <input type="date" id="last-name-colu" forma class="form-control <?= ($validation->hasError('date')) ? 'is-invalid' : ''; ?>" name="date" value="<?= set_value('date'); ?>" min="<?= date('Y-m-d'); ?>">
+                                        <input type="date" id="last-name-colu" forma class="form-control <?= ($validation->hasError('date')) ? 'is-invalid' : ''; ?>" name="date" value="<?= $jadwal->date ?>" min="<?= date('Y-m-d'); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('date'); ?>
                                         </div>
@@ -80,7 +80,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="city-column" class="form-label">Jam Kegiatan</label>
-                                        <input type="time" id="city-column" class="form-control <?= ($validation->hasError('time')) ? 'is-invalid' : ''; ?>" name="time" value="<?= set_value('time'); ?>">
+                                        <input type="time" id="time" class="form-control <?= ($validation->hasError('time')) ? 'is-invalid' : ''; ?>" name="time" value="<?= $jadwal->time ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('time'); ?>
                                         </div>
@@ -90,7 +90,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="company-column" class="form-label">Batas Tanggal Pendaftaran</label>
-                                        <input type="date" id="company-column" class="form-control <?= ($validation->hasError('date_end')) ? 'is-invalid' : ''; ?>" name="date_end" value="<?= set_value('date_end'); ?>" min="<?= date('Y-m-d'); ?>">
+                                        <input type="date" id="cleave-date" class="form-control <?= ($validation->hasError('date_end')) ? 'is-invalid' : ''; ?>" name="date_end" value="<?= $jadwal->date_end ?>" min="<?= date('Y-m-d'); ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('date_end'); ?>
                                         </div>
@@ -99,7 +99,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="email-id-column" class="form-label">Batas Waktu Pendaftaran</label>
-                                        <input type="time" id="email-id-column" class="form-control <?= ($validation->hasError('time_end')) ? 'is-invalid' : ''; ?>" name="time_end" value="<?= set_value('time_end'); ?>">
+                                        <input type="time" id="email-id-column" class="form-control <?= ($validation->hasError('time_end')) ? 'is-invalid' : ''; ?>" name="time_end" value="<?= $jadwal->time_end ?>">
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('time_end'); ?>
                                         </div>
@@ -137,5 +137,4 @@
         });
     });
 </script>
-
 <?= $this->endSection(); ?>

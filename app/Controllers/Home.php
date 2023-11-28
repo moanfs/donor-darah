@@ -13,7 +13,8 @@ class Home extends BaseController
         $berita = new BeritaModel();
         $data = [
             'stok' => $stok->getAllStok(),
-            'berita'    => $berita->getOneBerita()
+            'berita'    => $berita->getOneBerita(),
+            'provinsi'  => $stok->getAllStokProvinsi(),
         ];
         return view('user/dashboard', $data);
     }

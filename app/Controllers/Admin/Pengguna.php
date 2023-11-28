@@ -13,4 +13,30 @@ class Pengguna extends BaseController
         $data['users'] = $users->getAllUser();
         return view('admin/pengguna', $data);
     }
+
+    public function show($id)
+    {
+        $users = new UserModel();
+        return view('admin/pengguna-show', [
+            'user' => $users->find($id),
+        ]);
+    }
+    public function edit($id)
+    {
+        $users = new UserModel();
+        // $user = $users->find($id);
+        if ($this->request->getPost('active') == 1) {
+            $users->save([
+                'id_user'   => $id,
+                'active'    => 0
+            ]);
+            return redirect()->back();
+        } else {
+            $users->save([
+                'id_user'   => $id,
+                'active'    => 1
+            ]);
+            return redirect()->back();
+        }
+    }
 }

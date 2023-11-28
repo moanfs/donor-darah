@@ -50,4 +50,63 @@ class Berita extends BaseController
             return view('admin/form-berita', $data);
         }
     }
+
+    public function edit($id)
+    {
+        $berita = new BeritaModel();
+        return view('admin/berita-edit', [
+            'berita'        => $berita->find($id),
+            'validation'    => \config\Services::validation(),
+        ]);
+    }
+
+    public function update($id)
+    {
+        $data = $this->request->getPost();
+        // dd($data);
+        $berita = new BeritaModel();
+        $rules = [
+            'judul'     => ['rules' => 'required|', 'errors' => ['required' => 'judul berita tidak boleh kosong']],
+            'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi berita tidak boleh kosong']],
+            'isi'       => ['rules' => 'required|', 'errors' => ['required' => 'isi berita tidak boleh kosong']],
+            'sumber'    => ['rules' => 'required|', 'errors' => ['required' => 'sumber berita tidak boleh kosong']],
+        ];
+        $rulesimg = [
+            'judul'     => ['rules' => 'required|', 'errors' => ['required' => 'judul berita tidak boleh kosong']],
+            'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi berita tidak boleh kosong']],
+            'img'       => ['rules' => 'uploaded[img]|max_size[img,2048]|ext_in[img,png,jpg,jpeg]', 'errors' => ['uploaded' => 'gambar berita tidak boleh kosong', 'max_size' => 'ukuran maksimal 2MB', 'ext_in' => 'file hanya boleh png, jpg dan jpeg']],
+            'isi'       => ['rules' => 'required|', 'errors' => ['required' => 'isi berita tidak boleh kosong']],
+            'sumber'    => ['rules' => 'required|', 'errors' => ['required' => 'sumber berita tidak boleh kosong']],
+        ];
+
+        if ($this->validate($rulesimg)) {
+            $slug = url_title($data['judul'], '-', true);
+            $image = $this->request->getFile('img');
+            $gambar = $image->getRandomName();
+            $image->move('assets/berita/', $gambar);
+            $berita->save([
+                'id_berita' => $id,
+                'judul'     => $data['judul'],
+                'slug'      => $slug,
+                'lokasi'    => $data['lokasi'],
+                'img'       => $gambar,
+                'isi'       => $data['isi'],
+                'sumber'    => $data['sumber'],
+            ]);
+            return 'berhasil edit gambar';
+        } elseif ($this->validate($rules)) {
+            $slug = url_title($data['judul'], '-', true);
+            $berita->save([
+                'id_berita' => $id,
+                'judul'     => $data['judul'],
+                'slug'      => $slug,
+                'lokasi'    => $data['lokasi'],
+                'isi'       => $data['isi'],
+                'sumber'    => $data['sumber'],
+            ]);
+            return 'berhasil edit';
+        } else {
+            return 'gagal edit';
+        }
+    }
 }

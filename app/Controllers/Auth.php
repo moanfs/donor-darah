@@ -57,7 +57,7 @@ class Auth extends BaseController
                         return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
                     }
                 } else {
-                    return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
+                    return redirect()->back()->withInput()->with('message', 'Akun Anda Di Matikan!!');
                 }
             } else {
                 return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
@@ -84,12 +84,14 @@ class Auth extends BaseController
         $usia = date("Y", strtotime($data['tgl_lahir']));
         $newusia =  date("Y") - $usia;
         $rules = [
-            'namadepan'     => 'required|min_length[3]',
-            'namabelakang'  => 'required|min_length[3]',
-            'tgl_lahir'     => 'required',
-            'goldar'        => 'required',
-            'email'         => 'required|valid_email',
-            'password'      => 'required|min_length[3]'
+            'namadepan'     => ['rules' => 'required|', 'errors' => ['required' => 'Nama Depan tidak boleh kosong']],
+            'namabelakang'  => ['rules' => 'required|', 'errors' => ['required' => 'Nama Belakang tidak boleh kosong']],
+            'tgl_lahir'     => ['rules' => 'required|', 'errors' => ['required' => 'Tanggal Lahir tidak boleh kosong']],
+            // 'goldar'        => ['rules' => 'required|', 'errors' => ['required' => 'Golongan Darah tidak boleh kosong']],
+            'nik'           => ['rules' => 'required|', 'errors' => ['required' => 'Nik tidak boleh kosong']],
+            // 'jenis_klamin'  => ['rules' => 'required|', 'errors' => ['required' => 'Jenis Kelamin tidak boleh kosong']],
+            'email'         => ['rules' => 'required|is_unique[users.email]', 'errors' => ['required' => 'email tidak boleh kosong', 'is_unique' => 'email sudah terdaftar']],
+            'password'      => ['rules' => 'required|', 'errors' => ['required' => 'Password tidak boleh kosong']]
         ];
         if ($this->validate($rules)) {
             $fullname = $data['namadepan'] . ' ' . $data['namabelakang'];
@@ -99,6 +101,8 @@ class Auth extends BaseController
                 'nama_belakang'     => $data['namabelakang'],
                 'slug'              => $slug,
                 'tanggal_lahir'     => $data['tgl_lahir'],
+                'nik'               => $data['nik'],
+                'jenis_klamin'      => $data['jeniskelamin'],
                 'usia'              => $newusia,
                 'goldar'            => $data['goldar'],
                 'email'             => $data['email'],

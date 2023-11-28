@@ -4,19 +4,27 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\StokModel;
+use App\Models\WilayahModel;
 
 class Stok extends BaseController
 {
     public function index()
     {
         $stok = new StokModel();
-        $data['stok'] = $stok->getAllStok();
+        $wilayah = new WilayahModel();
+        $data = [
+            'stok' => $stok->getAllStok()
+        ];
         return view('admin/stokdarah', $data);
     }
 
     public function new()
     {
-        $data['validation'] = \config\Services::validation();
+        $wilayah = new WilayahModel();
+        $data = [
+            'validation' => \config\Services::validation(),
+            'provinsi'  => $wilayah->AllProvinsi(),
+        ];
         return view('admin/form-stok-darah', $data);
     }
 
@@ -27,6 +35,7 @@ class Stok extends BaseController
             'goldar'    => ['rules' => 'required', 'errors' => ['required' => 'golongan darah harus dipilih']],
             'jumlah'    => ['rules' => 'required|alpha_numeric', 'errors' => ['required' => 'jumlah kantong darah tidak boleh kosong', 'alpha_numeric' => 'hanya boleh angka']],
             'kab_kota'  => ['rules' => 'required', 'errors' => ['required' => 'kab/kota tidak boleh kosong']],
+            'nama_pmi'  => ['rules' => 'required', 'errors' => ['required' => 'Nama PMI tidak boleh kosong']],
             'provinsi'  => ['rules' => 'required', 'errors' => ['required' => 'provinsi tidak boleh kosong']],
         ];
         if ($this->validate($rules)) {
@@ -37,5 +46,25 @@ class Stok extends BaseController
             $data['validation'] = $this->validator;
             return view('admin/form-stok-darah', $data);
         }
+    }
+
+    public function show($id)
+    {
+        $stok = new StokModel();
+        return view('admin/stokdarah-show', [
+            'darah' => $stok->find($id),
+            // 'provinsi'  => 
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $stok = new StokModel();
+        $wilayah = new WilayahModel();
+        return view('admin/stokdarah-edit', [
+            'darah' => $stok->find($id),
+            'validation' => \config\Services::validation(),
+            'provinsi'  => $wilayah->AllProvinsi(),
+        ]);
     }
 }

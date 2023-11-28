@@ -14,11 +14,13 @@
         <div class="col-sm-4 col-md-8 card shadow-sm p-4">
             <h5>Profil pengguna</h5>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Nama : <?= $profile->nama_depan; ?></li>
-                <li class="list-group-item"><span>Marga</span> : <?= $profile->nama_belakang; ?></li>
-                <li class="list-group-item"><span>Nik </span> : <?= $profile->nik; ?></li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                <li class="list-group-item">Nama Depan : <?= $profile->nama_depan; ?></li>
+                <li class="list-group-item"><span>Nama Belakang</span> : <?= $profile->nama_belakang; ?></li>
+                <li class="list-group-item"><span>Email </span> : <?= $profile->email; ?></li>
+                <li class="list-group-item"><span>Nik Anda </span> : <?= $profile->nik; ?></li>
+                <li class="list-group-item"><span>Golongan Darah </span> : <?= $profile->goldar; ?></li>
+                <li class="list-group-item"><span>Jenis Kelamin </span> : <?= $profile->jenis_klamin; ?></li>
+                <li class="list-group-item"><span>Tanggal Lahir </span> : <?= date('d-m-Y', strtotime($profile->tanggal_lahir)) ?></li>
             </ul>
         </div>
     </div>

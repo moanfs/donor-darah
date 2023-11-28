@@ -9,19 +9,6 @@
     <div class="row">
         <div class="col-sm-6 col-md-6">
             <img class="img-fluid" src="assets/img/gambar1.png" alt="brand">
-            <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/img/gambar1.png" class="d-block w-100" alt="gambar1.png">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/berita.jpg" class="d-block w-100" alt="gambar1.png">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/donor.jpg" class="d-block w-100" alt="gambar1.png">
-                    </div>
-                </div>
-            </div> -->
         </div>
         <div class="col-sm-5 offset-sm-2 col-md-5 m-auto">
             <h4>Langka Kecil Untuk Memberi</h4>
@@ -87,8 +74,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Golongan Darah</th>
                         <th scope="col">Jumlah</th>
-                        <th scope="col">Provinsi</th>
                         <th scope="col">Kab/Kota</th>
+                        <th scope="col">Nama PMI</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,9 +83,9 @@
                         <tr>
                             <td><?= $key + 1; ?></td>
                             <td><?= $value['goldar']; ?></td>
-                            <td><?= $value['jumlah']; ?></td>
-                            <td><?= $value['kab_kota']; ?></td>
-                            <td><?= $value['provinsi']; ?></td>
+                            <td><?= $value['jumlah']; ?> Kantong</td>
+                            <td><?= $value['name']; ?></td>
+                            <td><?= $value['nama_pmi']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

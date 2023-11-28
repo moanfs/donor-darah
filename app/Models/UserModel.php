@@ -15,7 +15,7 @@ class UserModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'slug', 'nama_depan', 'nama_belakang', 'usia', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'email',
+        'slug', 'nama_depan', 'nama_belakang', 'usia', 'tempat_lahir', 'tanggal_lahir', 'jenis_klamin', 'nik', 'alamat', 'email',
         'phone', 'goldar', 'pass_hash', 'img_profile', 'active', 'auth_group', 'created_at', 'updated_at', 'deleted_at'
     ];
 
@@ -44,5 +44,13 @@ class UserModel extends Model
         return $this->db->table('users')
             ->where('id_user', $id)
             ->get()->getRowObject();
+    }
+
+    public function updateAdmin($id, $namadepan, $namabelakang, $email)
+    {
+
+        $this->where('id_user', $id)
+            ->set(['namadepan' => $namadepan, 'namabelakang' => $namabelakang, 'email' => $email])
+            ->update();
     }
 }

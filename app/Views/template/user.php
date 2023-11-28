@@ -64,6 +64,7 @@
                             <a class="btn btn-outline-danger btn-sm fw-semibold px-4" href="<?= site_url('login'); ?>">Masuk</a>
                         <?php else : ?>
                             <ul class="nav-item dropdown">
+
                                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href=""><img src="<?= base_url(); ?>/assets/img/<?= userLogin()->img_profile; ?>" height="40" class="rounded-circle me-1" alt="image profile" aria-expanded="false" data-bs-offset="10,20"></a>
                                 <ul class="dropdown-menu">
 
@@ -74,10 +75,11 @@
                                     </li>
                                     <li><a class="dropdown-item" href="<?= site_url('profile/') . userLogin()->id_user . '/' . userLogin()->slug; ?>"><i class="bi bi-person me-2"></i></i> Profil</a></li>
                                     <li><a class="dropdown-item" href="<?= site_url('setting-profile/') . userLogin()->id_user . '/' . userLogin()->slug; ?>"><i class="bi bi-gear me-2"></i></i> Pengaturan</a></li>
+                                    <li><a class="dropdown-item" href="<?= site_url('jadwal-donor/terdaftar'); ?>"><i class="bi bi-bell me-2"></i></i> Jadwal Anda</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= site_url('logout'); ?>"><i class="bi bi-box-arrow-left me-2"></i></i> Keluar</a></li>
+                                    <li><button type="button" data-bs-toggle="modal" data-bs-target="#logout" class="dropdown-item"><i class="bi bi-box-arrow-left me-2"></i>Keluar</li>
                                 </ul>
                             </ul>
                         <?php endif; ?>
@@ -157,6 +159,27 @@
         </footer>
     </div>
     <!-- Footer -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakan anda yakin ingin keluar!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="<?= site_url('logout'); ?>" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="<?= base_url(); ?>/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>

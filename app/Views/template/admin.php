@@ -13,6 +13,7 @@
     <!-- <link rel="shortcut icon" href="<?= base_url('assets/admin/images/logo/favicon.png'); ?>" type="image/png"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -95,9 +96,6 @@
                             <ul class="submenu ">
                                 <li class="submenu-item ">
                                     <a href="<?= site_url('admin/profile/') . userLogin()->id_user . '/' . userLogin()->slug ?>">Profile</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="<?= site_url('admin/setting-profile/') . userLogin()->id_user . '/' . userLogin()->slug ?>">Setting</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a type="button" data-bs-toggle="modal" data-bs-target="#border-less">Logout</a>

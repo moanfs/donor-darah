@@ -70,21 +70,27 @@
 
     <div class="card mt-5">
         <div class="card-header">
-            <h4 class="text-header text-center">Jadwal Donor Darah</h4>
+            <h4 class="text-header text-center">Jadwal Donor Yang Sudah Didaftar</h4>
         </div>
         <div class="card-body m-2">
             <div class="table-responsive">
+                <?php if (session()->getFlashdata('success')) : ?>
+                    <div class="alert alert-info alert-dismissible show fade mx-5">
+                        <div class="alert-body text-center">
+                            <?= session()->getFlashdata('success'); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <table class="table table-striped" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama Kegiatan</th>
                             <th scope="col">Lokasi</th>
-                            <th scope="col">Kota</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Jam</th>
-                            <th scope="col">Batas Pendaftaran</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col">Nomor Pendaftaran</th>
+                            <th scope="col">Tanggal Kegiatan</th>
+                            <th scope="col">Jam Kegiatan</th>
+                            <th scope="col">Status Kegiatan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,11 +99,16 @@
                                 <td><?= $key + 1; ?></td>
                                 <td><?= $value['nama']; ?></td>
                                 <td><?= $value['lokasi']; ?></td>
-                                <td><?= $value['name']; ?></td>
-                                <td><?= date("d-m-Y", strtotime($value['date'])) ?> </td>
+                                <td><?= $value['nomor']; ?></td>
+                                <td><?= date("d-m-Y", strtotime($value['date'])) ?></td>
                                 <td><?= $value['time']; ?></td>
-                                <td><?= date("d-m-Y", strtotime($value['date_end'])) ?> </td>
-                                <td><a href="<?= site_url('jadwal-donor/daftar/') . $value['id_jadwal'] ?>" class="btn btn-primary">Daftar</a></td>
+                                <?php $batas =  strtotime($value['date'] . ' ' . $value['time']) ?>
+                                <?php if ($batas <= time()) : ?>
+                                    <td>Selesai</td>
+                                <?php else : ?>
+                                    <td>Belum Selesai</td>
+                                <?php endif; ?>
+                                <!-- <td><a href="<?= site_url('jadwal-donor/terdaftar/lihat/') . $value['id_daftar']; ?>" class="btn btn-primary">Lihat</a></td> -->
                             </tr>
                         <?php endforeach; ?>
 

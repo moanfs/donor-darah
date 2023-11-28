@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\AdminFilter;
+use App\Filters\IsLogin;
 use App\Filters\LoginFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -24,7 +25,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'AdminFilter'   => AdminFilter::class,
-        'LoginFilter'   => LoginFilter::class
+        'LoginFilter'   => LoginFilter::class,
+        'isLogin'       => IsLogin::class
     ];
 
     /**

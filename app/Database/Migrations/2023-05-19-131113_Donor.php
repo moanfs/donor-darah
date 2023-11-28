@@ -39,8 +39,9 @@ class Donor extends Migration
             'id_darah'          => ['type' => 'int', 'constraint' => '11', 'unsigned' => true, 'auto_increment' => true],
             'goldar'            => ['type' => 'varchar', 'constraint' => '125'],
             'jumlah'            => ['type' => 'int', 'constraint' => '11'],
-            'kab_kota'          => ['type' => 'varchar', 'constraint' => '125'],
-            'provinsi'          => ['type' => 'varchar', 'constraint' => '125'],
+            'nama_pmi'          => ['type' => 'varchar', 'constraint' => '125'],
+            'kab_kota'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'provinsi'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],
             'updated_at'        => ['type' => 'datetime', 'null' => true],
             'deleted_at'        => ['type' => 'datetime', 'null' => true],
@@ -56,8 +57,8 @@ class Donor extends Migration
             'time'              => ['type' => 'varchar', 'constraint' => '125'],
             'date_end'          => ['type' => 'varchar', 'constraint' => '125'],
             'time_end'          => ['type' => 'varchar', 'constraint' => '125'],
-            'kab_kota'          => ['type' => 'varchar', 'constraint' => '125'],
-            'provinsi'          => ['type' => 'varchar', 'constraint' => '125'],
+            'kab_kota'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+            'provinsi'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'lokasi'            => ['type' => 'varchar', 'constraint' => '125'],
             'desc'              => ['type' => 'varchar', 'constraint' => '125', 'null' => true],
             'created_at'        => ['type' => 'datetime', 'null' => true],
@@ -67,19 +68,19 @@ class Donor extends Migration
         $this->forge->addKey('id_jadwal', true);
         $this->forge->createTable('jadwal_donor');
 
-        $this->forge->addField([
-            'id_donor'          => ['type' => 'int', 'constraint' => '11', 'unsigned' => true, 'auto_increment' => true],
-            'jadwal_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
-            'user_id'           => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
-            'created_at'        => ['type' => 'datetime', 'null' => true],
-            'updated_at'        => ['type' => 'datetime', 'null' => true],
-            'deleted_at'        => ['type' => 'datetime', 'null' => true],
-        ]);
-        $this->forge->addKey('id_donor', true);
-        $this->forge->addKey(['jadwal_id', 'user_id']);
-        $this->forge->addForeignKey('jadwal_id', 'jadwal_donor', 'id_jadwal', '', 'CASCADE');
-        $this->forge->addForeignKey('user_id', 'users', 'id_user', '', 'CASCADE');
-        $this->forge->createTable('pendonor');
+        // $this->forge->addField([
+        //     'id_donor'          => ['type' => 'int', 'constraint' => '11', 'unsigned' => true, 'auto_increment' => true],
+        //     'jadwal_id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+        //     'user_id'           => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
+        //     'created_at'        => ['type' => 'datetime', 'null' => true],
+        //     'updated_at'        => ['type' => 'datetime', 'null' => true],
+        //     'deleted_at'        => ['type' => 'datetime', 'null' => true],
+        // ]);
+        // $this->forge->addKey('id_donor', true);
+        // $this->forge->addKey(['jadwal_id', 'user_id']);
+        // $this->forge->addForeignKey('jadwal_id', 'jadwal_donor', 'id_jadwal', '', 'CASCADE');
+        // $this->forge->addForeignKey('user_id', 'users', 'id_user', '', 'CASCADE');
+        // $this->forge->createTable('pendonor');
 
         $this->forge->addField([
             'id_berita'         => ['type' => 'int', 'constraint' => '11', 'unsigned' => true, 'auto_increment' => true],

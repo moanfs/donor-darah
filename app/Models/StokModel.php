@@ -15,7 +15,7 @@ class StokModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'goldar', 'jumlah', 'kab_kota', 'provinsi', 'created_at', 'deleted_at', 'updated_at'
+        'goldar', 'jumlah', 'kab_kota', 'provinsi', 'nama_pmi', 'created_at', 'deleted_at', 'updated_at'
     ];
 
     // Dates
@@ -34,6 +34,16 @@ class StokModel extends Model
     public function getAllStok()
     {
         return $this->db->table('stok_darah')
-            ->get()->getResultArray();
+            ->join('regencies', 'regencies.id = stok_darah.kab_kota', 'left')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getAllStokProvinsi()
+    {
+        return $this->db->table('stok_darah')
+            ->join('provinces', 'provinces.id = stok_darah.provinsi', 'left')
+            ->get()
+            ->getResultArray();
     }
 }

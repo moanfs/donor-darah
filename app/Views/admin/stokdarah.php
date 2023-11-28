@@ -25,7 +25,6 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Golongan Darah</th>
                                     <th scope="col">Jumlah</th>
-                                    <th scope="col">Provinsi</th>
                                     <th scope="col">Kab/Kota</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
@@ -36,9 +35,11 @@
                                         <td><?= $key + 1; ?></td>
                                         <td><?= $value['goldar']; ?></td>
                                         <td><?= $value['jumlah']; ?></td>
-                                        <td><?= $value['kab_kota']; ?></td>
-                                        <td><?= $value['provinsi']; ?></td>
-                                        <td><a href="#" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a></td>
+                                        <td><?= $value['name']; ?></td>
+                                        <td>
+                                            <!-- <a href="<?= site_url('admin/stok-darah/show/') . $value['id_darah']; ?>" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a> -->
+                                            <a href="<?= site_url('admin/stok-darah/edit/') . $value['id_darah']; ?>" class="btn btn-sm btn-info"><i class="bi bi-pencil"></i></i></a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

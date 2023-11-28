@@ -21,20 +21,28 @@ class JadwalModel extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
 
     public function getAllJadwal()
     {
         return $this->db->table('jadwal_donor')
             ->get()->getResultArray();
+    }
+
+    public function getAllDonor()
+    {
+        // $dateTimeEnd = strtotime($jadwal['date_end'] . ' ' . $jadwal['time_end']);
+        return $this->db->table('jadwal_donor')
+            ->join('regencies', 'regencies.id = jadwal_donor.kab_kota', 'left')
+            // ->where('da')
+            ->get()->getResultArray();
+    }
+
+    public function getJadwal($id)
+    {
+        return $this->db->table('jadwal_donor')
+            ->join('regencies', 'regencies.id = jadwal_donor.kab_kota', 'left')
+            ->where('id_jadwal', $id)
+            ->get()->getRowObject();
     }
 }

@@ -34,8 +34,7 @@
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Waktu</th>
                                     <th scope="col">lokasi</th>
-                                    <th scope="col">Kab/Kota</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Kota/Kab</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -47,9 +46,8 @@
                                         <td><?= $value['date']; ?></td>
                                         <td><?= $value['time']; ?></td>
                                         <td><?= $value['lokasi']; ?></td>
-                                        <td><?= $value['provinsi']; ?></td>
-                                        <td><?= $value['date_end']; ?></td>
-                                        <td><a href="#" class="btn btn-info">edit</a></td>
+                                        <td><?= $value['name']; ?></td>
+                                        <td><a href="<?= base_url('admin/edit-jadwal/' . $value['id_jadwal']); ?>" class="btn btn-info"><i class="bi bi-pencil"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
