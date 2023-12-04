@@ -19,9 +19,9 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" data-parsley-validate method="post" action="<?= site_url('admin/add-jadwal'); ?>">
+                        <form class="form" data-parsley-validate method="post" action="<?= site_url('admin/edit-jadwal/') . $jadwal->id_jadwal; ?>">
                             <div class="row">
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
                                         <label for="first-name-colum" class="form-label">Nama Kegiatan</label>
                                         <input type="text" id="first-name-colum" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="nama kegiatan" name="nama" value="<?= $jadwal->nama ?>">
@@ -41,19 +41,11 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="last-name-column" class="form-label">Provinsi</label>
-                                        <select class="form-select" name="provinsi[]" id="provinsi" aria-label="Default select example">
-                                            <option selected>Pilih Provinsi</option>
-                                            <?php foreach ($provinsi as $value) : ?>
-                                                <option value="<?= $value->id; ?>" <?php if ($value->id == $jadwal->provinsi) : ?>selected <?php endif; ?>><?= $value->name; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group mandatory">
                                         <label for="last-name-colum" class="form-label">Kab/Kota</label>
                                         <select class="form-select" name="kabupaten" id="kabupaten" aria-label="Default select example">
+                                            <?php foreach ($kabupaten as $data) : ?>
+                                                <option value="<?= $data->id; ?>" <?php if ($data->id == $jadwal->kab_kota) : ?>selected <?php endif; ?>><?= $data->name; ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -120,21 +112,5 @@
     </div>
 </section>
 
-<script>
-    $(document).ready(function() {
-        $("#provinsi").change(function(e) {
-            var provinsi = $("#provinsi").val();
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url('admin/kabupaten'); ?>",
-                data: {
-                    provinsi: provinsi
-                },
-                success: function(response) {
-                    $("#kabupaten").html(response);
-                }
-            });
-        });
-    });
-</script>
+
 <?= $this->endSection(); ?>

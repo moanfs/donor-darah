@@ -58,19 +58,11 @@
                                 </div>
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="last-name-column" class="form-label">Provinsi</label>
-                                        <select class="form-select" name="provinsi[]" id="provinsi" aria-label="Default select example">
-                                            <option selected>Pilih Provinsi</option>
-                                            <?php foreach ($provinsi as $value) : ?>
-                                                <option value="<?= $value->id; ?>"><?= $value->name; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-12">
-                                    <div class="form-group mandatory">
-                                        <label for="last-name-colum" class="form-label">Kab/Kota</label>
+                                        <label for="last-name-colum" class="form-label">Kota</label>
                                         <select class="form-select" name="kab_kota" id="kabupaten" aria-label="Default select example">
+                                            <?php foreach ($kabupaten as $data) : ?>
+                                                <option value="<?= $data->id; ?>"><?= $data->name; ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -88,21 +80,5 @@
     </div>
 </section>
 
-<script>
-    $(document).ready(function() {
-        $("#provinsi").change(function(e) {
-            var provinsi = $("#provinsi").val();
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url('admin/kabupaten'); ?>",
-                data: {
-                    provinsi: provinsi
-                },
-                success: function(response) {
-                    $("#kabupaten").html(response);
-                }
-            });
-        });
-    });
-</script>
+
 <?= $this->endSection(); ?>

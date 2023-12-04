@@ -12,7 +12,13 @@ class WilayahModel extends Model
             ->get()->getResultObject();
     }
 
-    public function AllKabupaten($id_provinsi)
+    public function AllKabupaten()
+    {
+        return $this->db->table('regencies')
+            ->get()->getResultObject();
+    }
+
+    public function AllKabupatenBy($id_provinsi)
     {
         return $this->db->table('regencies')
             ->where('province_id', $id_provinsi)

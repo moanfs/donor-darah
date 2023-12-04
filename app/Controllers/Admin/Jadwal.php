@@ -26,7 +26,7 @@ class Jadwal extends BaseController
         $wilayah = new WilayahModel();
         $data = [
             'validation' => \config\Services::validation(),
-            'provinsi'  => $wilayah->AllProvinsi(),
+            'kabupaten'  => $wilayah->AllKabupaten(),
         ];
         return view('admin/form-jadwal-donor', $data);
     }
@@ -39,7 +39,7 @@ class Jadwal extends BaseController
         $rules = [
             'nama'      => ['rules' => 'required|', 'errors' => ['required' => 'nama kegiatan tidak boleh kosong']],
             'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi kegiatan tidak boleh kosong']],
-            'provinsi'  => ['rules' => 'required|', 'errors' => ['required' => 'provinsi kegiatan tidak boleh kosong']],
+            // 'provinsi'  => ['rules' => 'required|', 'errors' => ['required' => 'provinsi kegiatan tidak boleh kosong']],
             'kabupaten' => ['rules' => 'required|', 'errors' => ['required' => 'kab/kota kegiatan tidak boleh kosong']],
             'desc'      => ['rules' => 'required|', 'errors' => ['required' => 'deskripsi kegiatan tidak boleh kosong']],
             'date'      => ['rules' => 'required|', 'errors' => ['required' => 'tanggal kegiatan tidak boleh kosong']],
@@ -53,7 +53,7 @@ class Jadwal extends BaseController
                 'nama'      => $data['nama'],
                 'slug'      => $slug,
                 'lokasi'    => $data['lokasi'],
-                'provinsi'  => $data['provinsi'],
+                // 'provinsi'  => $data['provinsi'],
                 'kab_kota'  => $data['kabupaten'],
                 'desc'      => $data['desc'],
                 'date'      => $data['date'],
@@ -74,11 +74,61 @@ class Jadwal extends BaseController
         $jadwal = new JadwalModel();
         $data = [
             'validation' => \config\Services::validation(),
-            'provinsi'  => $wilayah->AllProvinsi(),
+            'kabupaten'  => $wilayah->AllKabupaten(),
             'jadwal'    => $jadwal->getJadwal($id),
 
         ];
         return view('admin/edit-jadwal-donor', $data);
+    }
+
+    public function update($id)
+    {
+        $jadwalModel = new JadwalModel();
+        $wilayah = new WilayahModel();
+        $data = $this->request->getPost();
+        $slug = url_title($data['nama'], '-', true);
+        $rules = [
+            'nama'      => ['rules' => 'required|', 'errors' => ['required' => 'nama kegiatan tidak boleh kosong']],
+            'lokasi'    => ['rules' => 'required|', 'errors' => ['required' => 'lokasi kegiatan tidak boleh kosong']],
+            // 'provinsi'  => ['rules' => 'required|', 'errors' => ['required' => 'provinsi kegiatan tidak boleh kosong']],
+            'kabupaten' => ['rules' => 'required|', 'errors' => ['required' => 'kab/kota kegiatan tidak boleh kosong']],
+            'desc'      => ['rules' => 'required|', 'errors' => ['required' => 'deskripsi kegiatan tidak boleh kosong']],
+            'date'      => ['rules' => 'required|', 'errors' => ['required' => 'tanggal kegiatan tidak boleh kosong']],
+            'time'      => ['rules' => 'required|', 'errors' => ['required' => 'jam kegiatan tidak boleh kosong']],
+            'date_end'  => ['rules' => 'required|', 'errors' => ['required' => 'tanggal batas pendaftaran tidak boleh kosong']],
+            'time_end'  => ['rules' => 'required|', 'errors' => ['required' => 'jam batas pendaftaran tidak boleh kosong']],
+        ];
+
+        if ($this->validate($rules)) {
+            $jadwalModel->save([
+                'id_jadwal' => $id,
+                'nama'      => $data['nama'],
+                'slug'      => $slug,
+                'lokasi'    => $data['lokasi'],
+                // 'provinsi'  => $data['provinsi'],
+                'kab_kota'  => $data['kabupaten'],
+                'desc'      => $data['desc'],
+                'date'      => $data['date'],
+                'time'      => $data['time'],
+                'date_end'  => $data['date_end'],
+                'time_end'  => $data['time_end'],
+            ]);
+            return redirect()->to(site_url('admin/jadwal-donor'))->with('message', 'Berhasil Edit jadwal');
+        } else {
+            $data = [
+                'kabupaten'  => $wilayah->AllKabupaten(),
+                'jadwal'    => $jadwalModel->getJadwal($id),
+                'validation' => $this->validator,
+            ];
+            return view('admin/edit-jadwal-donor', $data);
+        }
+    }
+
+    public function delete($id)
+    {
+        $jadwal  = new JadwalModel();
+        $jadwal->delete(['id_jadwal' => $id]);
+        return redirect()->back()->with('message', 'Berhasil Hapus Jadwal');
     }
 
     public function kabupaten()

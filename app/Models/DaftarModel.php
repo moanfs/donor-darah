@@ -37,4 +37,12 @@ class DaftarModel extends Model
             ->where('user_id', userLogin()->id_user)
             ->get()->getResultArray();
     }
+
+    //admin
+    public function getPendaftar()
+    {
+        return $this->join('jadwal_donor', 'jadwal_donor.id_jadwal = dafat_donor.jadwal_id')
+            ->join('users', 'users.id_user=dafat_donor.user_id')
+            ->get()->getResultArray();
+    }
 }

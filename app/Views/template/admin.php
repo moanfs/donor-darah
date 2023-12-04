@@ -13,6 +13,10 @@
     <!-- <link rel="shortcut icon" href="<?= base_url('assets/admin/images/logo/favicon.png'); ?>" type="image/png"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
@@ -65,7 +69,12 @@
                                 <span>jadwal Donor</span>
                             </a>
                         </li>
-
+                        <li class="sidebar-item  ">
+                            <a href="<?= site_url('admin/pendaftar-donor'); ?>" class='sidebar-link'>
+                                <i class="bi bi-journal-check"></i>
+                                <span>Pendaftar Donor</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item  ">
                             <a href="<?= site_url('admin/stok-darah'); ?>" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-arrow-down"></i>

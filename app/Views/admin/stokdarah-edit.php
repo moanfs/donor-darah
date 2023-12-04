@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form" data-parsley-validate method="post" action="<?= site_url('admin/add-darah'); ?>">
+                        <form class="form" data-parsley-validate method="post" action="<?= site_url('admin/stok-darah/edit/') . $darah['id_darah']; ?>">
                             <div class="row">
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
@@ -40,6 +40,15 @@
                                 </div>
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
+                                        <label for="last-name-column" class="form-label">Nama PMI</label>
+                                        <input type="text" id="last-name-column" class="form-control <?= ($validation->hasError('nama_pmi')) ? 'is-invalid' : ''; ?>" placeholder="nama pmi" name="nama_pmi" value="<?= $darah['nama_pmi'] ?>">
+                                        <div class="invalid-feedback">
+                                            <?= $validation->getError('nama_pmi'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-12">
+                                    <div class="form-group mandatory">
                                         <label for="last-name-column" class="form-label">Jumlah kantong</label>
                                         <input type="number" id="last-name-column" class="form-control <?= ($validation->hasError('jumlah')) ? 'is-invalid' : ''; ?>" placeholder="jumlah kantong darah" min="1" name="jumlah" value="<?= $darah['jumlah'] ?>">
                                         <div class="invalid-feedback">
@@ -49,19 +58,11 @@
                                 </div>
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="last-name-column" class="form-label">Provinsi</label>
-                                        <select class="form-select" name="provinsi[]" id="provinsi" aria-label="Default select example">
-                                            <option selected>Pilih Provinsi</option>
-                                            <?php foreach ($provinsi as $value) : ?>
-                                                <option value="<?= $value->id; ?>" <?php if ($value->id == $darah['provinsi']) : ?>selected <?php endif; ?>><?= $value->name; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-12">
-                                    <div class="form-group mandatory">
                                         <label for="last-name-colum" class="form-label">Kab/Kota</label>
                                         <select class="form-select" name="kab_kota" id="kabupaten" aria-label="Default select example">
+                                            <?php foreach ($kabupaten as $data) : ?>
+                                                <option value="<?= $data->id; ?>" <?php if ($data->id == $darah['kab_kota']) : ?>selected <?php endif; ?>><?= $data->name; ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -79,21 +80,5 @@
     </div>
 </section>
 
-<script>
-    $(document).ready(function() {
-        $("#provinsi").change(function(e) {
-            var provinsi = $("#provinsi").val();
-            $.ajax({
-                type: "POST",
-                url: "<?= base_url('admin/kabupaten'); ?>",
-                data: {
-                    provinsi: provinsi
-                },
-                success: function(response) {
-                    $("#kabupaten").html(response);
-                }
-            });
-        });
-    });
-</script>
+
 <?= $this->endSection(); ?>
