@@ -48,7 +48,7 @@
                                             <button data-bs-toggle="modal" data-bs-target="#delete" class="btn icon icon-left btn-danger text-nowrap"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -79,6 +79,7 @@
                 <form action="<?= site_url('admin/berita/delete/') . $value['id_berita']; ?>" method="post">
                     <button type="submit" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Hapus</button>
                 </form>
+            <?php endforeach; ?>
             </div>
         </div>
     </div>
