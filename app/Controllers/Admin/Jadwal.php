@@ -33,6 +33,7 @@ class Jadwal extends BaseController
 
     public function save()
     {
+        $wilayah = new WilayahModel();
         $jadwalModel = new JadwalModel();
         $data = $this->request->getPost();
         $slug = url_title($data['nama'], '-', true);
@@ -63,7 +64,10 @@ class Jadwal extends BaseController
             ]);
             return redirect()->to(site_url('admin/jadwal-donor'))->with('message', 'Berhasil menambah jadwal');
         } else {
-            $data['validation'] = $this->validator;
+            $data = [
+                'validation' => $this->validator,
+                'kabupaten'  => $wilayah->AllKabupaten(),
+            ];
             return view('admin/form-jadwal-donor', $data);
         }
     }

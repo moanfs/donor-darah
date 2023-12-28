@@ -49,7 +49,9 @@ class Berita extends BaseController
             return redirect()->to(site_url('admin/berita'))->with('message', 'Berhasil menambah berita');
         } else {
             $data['validation'] = $this->validator;
-            return view('admin/form-berita', $data);
+            // return view('admin/form-berita', $data);
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->back()->withInput();
         }
     }
 

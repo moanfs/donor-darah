@@ -18,6 +18,14 @@
                     <h4 class="card-title">Form Berita</h4>
                 </div>
                 <div class="card-content">
+                    <?php if (session()->getFlashdata('error')) : ?>
+                        <div class="alert alert-danger alert-dismissible show fade">
+                            <div class="alert-body">
+                                <b>Error !</b>
+                                <?= session()->getFlashdata('error'); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="card-body">
                         <form class="form" data-parsley-validate method="post" enctype="multipart/form-data" action="<?= site_url('admin/add-berita'); ?>">
                             <div class="row">
