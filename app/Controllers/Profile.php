@@ -57,7 +57,7 @@ class Profile extends BaseController
         } else {
             // return 'gagal vaildasi';
             // $validation = \config\Services::validation();
-            return redirect()->back()->withInput()->with('gagal', 'gagal edit profile');
+            return redirect()->back()->withInput()->with('gagal', 'Gagal edit profile');
         }
 
         return redirect()->back();
@@ -84,15 +84,16 @@ class Profile extends BaseController
     public function password($id)
     {
         $user = new UserModel();
-        $data = $user->find($id);
-        $passdatabase = $data['pass_hash'];
+        $datauser = $user->find($id);
+        $data = $this->request->getPost();
+        $passdatabase = $datauser['pass_hash'];
         $rules = [
             'passlama'  => 'required',
             'passbaru'  => 'required|min_length[3]'
         ];
         if ($this->validate($rules)) {
-            $passlama = $this->request->getPost('passlama');
-            $passbaru = password_hash($this->request->getPost('passbaru'), PASSWORD_DEFAULT);
+            $passlama = $data['passlama'];
+            $passbaru = password_hash($data['passbaru'], PASSWORD_DEFAULT);
             if (password_verify($passlama, $passdatabase)) {
                 $user->save([
                     'id_user'       => $id,

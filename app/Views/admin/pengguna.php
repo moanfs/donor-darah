@@ -5,11 +5,27 @@
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
+<!-- heading -->
 <div class="page-heading">
-    <h3>Pengguna Donor Tree</h3>
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Pengguna Donor Tree</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= site_url('admin'); ?>">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tabel Pengguna</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="page-content">
-    <section class="section">
+<!-- content -->
+<section class="section">
+    <div class="page-content">
         <div class="row" id="table-responsive">
             <div class="col-12">
                 <div class="card">
@@ -39,12 +55,12 @@
                                         <td><?= $value['jenis_klamin']; ?></td>
                                         <td><?= $value['goldar']; ?></td>
                                         <td><?php if ($value['active'] == 1) : ?>
-                                                <p>Aktif</p>
+                                                <span class="badge text-bg-success">Aktif</span>
                                             <?php else : ?>
-                                                <p>Tidak Aktif</p>
+                                                <span class="badge text-bg-danger">Tidak Aktif</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td><a href="<?= site_url('admin/pengguna/show/') . $value['id_user']; ?>">Lihat</a></td>
+                                        <td><a href="<?= site_url('admin/pengguna/show/') . $value['id_user']; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -53,7 +69,7 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </section>
-</div>
+
 <?= $this->endSection(); ?>

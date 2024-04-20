@@ -1,5 +1,8 @@
 body{
     padding-top: 56px;
+    /* display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set ting */
 }
 
 .navbar{
@@ -25,3 +28,14 @@ a, .dropdown-item:hover{
     color: #fff;
     border-radius: 25px;
 } */
+
+    /* CSS untuk styling alert */
+.custom-alert {
+    padding: 5px;
+    /* background-color: #f8d7da; Warna latar merah muda */
+    /* border: 1px solid #f5c6cb; Warna border */
+    color: #721c24; /* Warna teks */
+    border-radius: 5px; /* Corner radius */
+    margin-bottom: 15px; /* Margin bawah */
+    
+}

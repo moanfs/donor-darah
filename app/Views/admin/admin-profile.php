@@ -17,7 +17,7 @@
             </div>
             <section class="section">
                 <?php if (session()->getFlashdata('success')) : ?>
-                    <div class="alert alert-info alert-dismissible show fade mx-5">
+                    <div class="alert alert-success alert-dismissible show fade mx-5">
                         <div class="alert-body text-center">
                             <?= session()->getFlashdata('success'); ?>
                         </div>
@@ -39,9 +39,9 @@
                                         <img src="<?= base_url('assets/img/') . $profile->img_profile; ?>" alt="Avatar" class="" style="width: 15rem; height: 15rem; border-radius: 50%;">
                                     </div>
 
-                                    <h3 class="mt-3"><?= $profile->nama_depan . ' ' . $profile->nama_belakang; ?></h3>
+                                    <h3 class="mt-3"><?= $profile->nama; ?></h3>
                                 </div>
-                                <form action="<?= site_url('admin/profile-img/') . $profile->id_user; ?>" method="post" enctype="multipart/form-data">
+                                <form action="<?= site_url('admin/profile-img/') . $profile->id_admin; ?>" method="post" enctype="multipart/form-data">
                                     <div class="input-group mt-3">
                                         <input type="file" class="form-control" name="img_profile" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                         <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Update</button>
@@ -59,14 +59,14 @@
                                         <?php echo $validation->listErrors() ?>
                                     </div>
                                 <?php } ?>
-                                <form action="<?= site_url('admin/profile/') . $profile->id_user; ?>" method="post">
+                                <form action="<?= site_url('admin/profile/') . $profile->id_admin; ?>" method="post">
                                     <div class="form-group">
-                                        <label for="name" class="form-label">Nama Depan</label>
-                                        <input type="text" name="namadepan" id="namadepan" class="form-control" placeholder="Your Name" value="<?= $profile->nama_depan; ?>">
+                                        <label for="name" class="form-label">Nama</label>
+                                        <input type="text" name="nama" id="namadepan" class="form-control" placeholder="Your Name" value="<?= $profile->nama; ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="form-label">Nama Belakang</label>
-                                        <input type="text" name="namabelakang" id="namabelakang" class="form-control" placeholder="Your Name" value="<?= $profile->nama_belakang; ?>">
+                                        <label for="name" class="form-label">Petugas PMI</label>
+                                        <input type="text" id="pmi" class="form-control" disabled placeholder="Your Name" value="<?= $profile->nama_pmi; ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="form-label">Email</label>
@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                                 <?php endif; ?>
-                                <form action="<?= site_url('admin/profile-password/') . $profile->id_user; ?>" method="post">
+                                <form action="<?= site_url('admin/profile-password/') . $profile->id_admin; ?>" method="post">
                                     <div class="form-group">
                                         <label for="name" class="form-label">Password Lama</label>
                                         <input type="password" name="passlama" id="namadepan" class="form-control">

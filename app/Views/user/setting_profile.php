@@ -97,11 +97,15 @@
                             <label for="goldar" class="col-sm-3 col-form-label">Golongan Darah</label>
                             <div class="col-sm-9">
                                 <select class="form-select" required aria-label="Default select example" name="goldar">
-                                    <option value="A" <?php if ($profile->goldar == 'A') : ?>selected <?php endif; ?>>A</option>
-                                    <option value="B" <?php if ($profile->goldar == 'AB') : ?>selected <?php endif; ?>>B</option>
-                                    <option value="AB" <?php if ($profile->goldar == 'AB') : ?>selected <?php endif; ?>>AB</option>
-                                    <option value="O" <?php if ($profile->goldar == 'O') : ?>selected <?php endif; ?>>O</option>
-                                    <option value="" <?php if ($profile->goldar == '') : ?>selected <?php endif; ?>>Belum Tau</option>
+                                    <option value="A+" <?php if ($profile->goldar == 'A+') : ?>selected <?php endif; ?>>A+</option>
+                                    <option value="A-" <?php if ($profile->goldar == 'A-') : ?>selected <?php endif; ?>>A-</option>
+                                    <option value="B+" <?php if ($profile->goldar == 'B+') : ?>selected <?php endif; ?>>B+</option>
+                                    <option value="B-" <?php if ($profile->goldar == 'B-') : ?>selected <?php endif; ?>>B-</option>
+                                    <option value="AB+" <?php if ($profile->goldar == 'AB+') : ?>selected <?php endif; ?>>AB+</option>
+                                    <option value="AB-" <?php if ($profile->goldar == 'AB-') : ?>selected <?php endif; ?>>AB-</option>
+                                    <option value="O+" <?php if ($profile->goldar == 'O+') : ?>selected <?php endif; ?>>O+</option>
+                                    <option value="O-" <?php if ($profile->goldar == 'O-') : ?>selected <?php endif; ?>>O-</option>
+                                    <option value="-" <?php if ($profile->goldar == '-') : ?>selected <?php endif; ?>>Belum Tau</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('goldar'); ?>

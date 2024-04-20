@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\BeritaModel;
+use App\Models\PmiModel;
 use App\Models\StokModel;
 
 class Home extends BaseController
@@ -11,10 +12,11 @@ class Home extends BaseController
     {
         $stok = new StokModel();
         $berita = new BeritaModel();
+        $pmi = new PmiModel();
         $data = [
-            'stok' => $stok->getAllStok(),
+            'stok'      => $stok->getStokByGol(),
             'berita'    => $berita->getOneBerita(),
-            'provinsi'  => $stok->getAllStokProvinsi(),
+            'pmi'       => $pmi->findAll()
         ];
         return view('user/dashboard', $data);
     }

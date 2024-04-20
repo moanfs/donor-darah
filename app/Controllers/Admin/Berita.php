@@ -17,7 +17,7 @@ class Berita extends BaseController
     public function new()
     {
         $data['validation'] = \config\Services::validation();
-        return view('admin/form-berita', $data);
+        return view('admin/berita-form', $data);
     }
 
     public function save()
@@ -122,6 +122,6 @@ class Berita extends BaseController
     {
         $berita = new BeritaModel();
         $berita->delete(['id_berita' => $id]);
-        return redirect()->back()->with('message', 'Berhasil Hapus Berita');
+        return redirect()->to(site_url('admin/berita'))->with('message', 'Berhasil Hapus Berita');
     }
 }

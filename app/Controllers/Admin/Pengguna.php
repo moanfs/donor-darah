@@ -24,14 +24,15 @@ class Pengguna extends BaseController
     public function edit($id)
     {
         $users = new UserModel();
-        // $user = $users->find($id);
         if ($this->request->getPost('active') == 1) {
+            // untuk mematikaan akun user
             $users->save([
                 'id_user'   => $id,
                 'active'    => 0
             ]);
             return redirect()->back();
         } else {
+            // untuk mengembalikan akun user
             $users->save([
                 'id_user'   => $id,
                 'active'    => 1

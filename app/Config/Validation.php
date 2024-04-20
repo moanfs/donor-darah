@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Validation\CustomValidation;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Validation\StrictRules\CreditCardRules;
 use CodeIgniter\Validation\StrictRules\FileRules;
@@ -25,6 +26,7 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        CustomValidation::class,
     ];
 
     /**
@@ -41,4 +43,30 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    // public $rules = [
+    //     // Aturan validasi lainnya...
+    //     'time_start' => 'required|validateTimeRange[time_start,time_end]',
+    //     'time_end' => 'required',
+    // ];
+
+    // public $aliases = [
+    //     'time_start' => 'Waktu Mulai',
+    //     'time_end' => 'Waktu Selesai',
+    // ];
+
+    // public $customErrors = [
+    //     'validateTimeRange' => [
+    //         'default' => '{field} harus lebih kecil dari {param}.',
+    //     ],
+    // ];
+
+    // public function validateTimeRange(string $str, string $fields, array $data)
+    // {
+    //     [$startField, $endField] = explode(',', $fields);
+
+    //     $startTime = strtotime($data[$startField]);
+    //     $endTime = strtotime($data[$endField]);
+
+    //     return ($startTime < $endTime);
+    // }
 }

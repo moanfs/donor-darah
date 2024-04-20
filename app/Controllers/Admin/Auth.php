@@ -15,11 +15,11 @@ class Auth extends BaseController
 
     public function login()
     {
-        if (session('id_user')) {
-            return redirect()->back();
-        }
+        // if (session('id_user')) {
+        //     return redirect()->back();
+        // }
         $data['validation'] = \config\Services::validation();
-        return view('login', $data);
+        return view('admin/admin-login', $data);
     }
 
     public function attempLogin()
@@ -37,35 +37,39 @@ class Auth extends BaseController
             ]
         ];
         if ($this->validate($rules)) {
-            $query = $this->db->table('users')
+            $query = $this->db->table('admin')
                 ->getwhere(['email' => $data['email']]);
             $attempt = $query->getrow();
             if ($attempt) {
-                if ($attempt->auth_group == 1) {
+                if ($attempt->active == 1) {
                     if (password_verify($data['password'], $attempt->pass_hash)) {
-                        $params = ['id_user' => $attempt->id_user];
+                        $params = ['id_admin' => $attempt->id_admin];
                         $slug = ['slug' => $attempt->slug];
+                        $role = ['role' => $attempt->role];
                         session()->set($params);
                         session()->set($slug);
+                        session()->set($role);
                         return redirect()->to(site_url('admin'));
                     } else {
                         return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
                     }
                 } else {
-                    return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
+                    return redirect()->back()->withInput()->with('message', 'Akun Anda Di Matikan!!');
                 }
             } else {
                 return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
             }
         } else {
             $data['validation'] = $this->validator;
-            return view('auth', $data);
+            return view('admin/admin-login', $data);
+            // return redirect()->to(base_url('login-admin'))->withInput();
         }
     }
 
     public function logout()
     {
-        session()->remove('id_user');
-        return redirect()->to(site_url('auth'));
+        session()->destroy();
+        // session()->remove('id_admin');
+        return redirect()->to(site_url('login-admin'));
     }
 }

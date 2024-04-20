@@ -3,15 +3,19 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\DaftarModel;
 use App\Models\DonorModel;
+use App\Models\PmiModel;
 
 class Dashboard extends BaseController
 {
     public function index()
     {
-        $donor = new DonorModel();
+        $daftar = new DaftarModel();
+        $pmi   = new PmiModel();
         return view('admin/index', [
-            'donor'     => $donor->getNewPendonor(),
+            'donor'     => $daftar->getTopDonor(),
+            'pmi'       => $pmi->getAllPMI(),
         ]);
     }
 }

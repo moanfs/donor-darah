@@ -1,17 +1,31 @@
 <?= $this->extend('template/admin'); ?>
 
 <?= $this->Section('title') ?>
-<title>From Jadwal - Admin Donor Darah</title>
+<title>Berita - Admin Donor Darah</title>
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
+<!-- heading -->
 <div class="page-heading">
-    <h3>Form Edit Berita Donor Tree</h3>
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Form Edit Berita Donor Tree</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= site_url('admin/berita'); ?>">Berita</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Berita</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
-
-<!-- // Basic multiple Column Form section start -->
+<!-- content -->
 <?php if (session()->getFlashdata('success')) : ?>
-    <div class="alert alert-info alert-dismissible show fade mx-5">
+    <div class="alert alert-success alert-dismissible show fade mx-5">
         <div class="alert-body text-center">
             <?= session()->getFlashdata('success'); ?>
         </div>
@@ -87,7 +101,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Edit</button>
+                                    <a href="<?= site_url('admin/berita'); ?>" class="btn btn-success me-1 mb-1">Daftar Berita Lain</a>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">Edit Berita</button>
+                                    <a data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-danger me-1 mb-1">Hapus Berita</a>
                                 </div>
                             </div>
                         </form>
@@ -97,4 +113,30 @@
         </div>
     </div>
 </section>
+
+<!-- modal untuk hapus -->
+<div class="modal fade text-left modal-borderless" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Hapus!!</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">Anda yakin ingin hapus Berita!!</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+                <form action="<?= site_url('admin/berita/delete/') . $berita['id_berita'] ?>" method="post">
+                    <button type="submit" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection(); ?>

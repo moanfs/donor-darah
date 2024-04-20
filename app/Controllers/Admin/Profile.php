@@ -3,41 +3,40 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\UserModel;
+use App\Models\AdminModel;
 
 class Profile extends BaseController
 {
-    public function index($id, $slug)
+    public function index($slug)
     {
         //
-        $profile = new UserModel();
-        $data['profile'] = $profile->getProfile($id);
+        $profile = new AdminModel();
+        $data['profile'] = $profile->getProfile();
 
-        return view('admin/profile', $data);
+        return view('admin/admin-profile', $data);
     }
 
     public function update($id)
     {
-
+        $data = $this->request->getPost();
         $validation = $this->validate([
-            'namadepan'     => 'required|min_length[3]',
-            'namabelakang'  => 'required|min_length[3]',
-            'email'         => 'required|valid_email',
+            'nama'     => 'required|min_length[3]',
+            'email'    => 'required|valid_email',
         ]);
 
         if (!$validation) {
-            $profile = new UserModel();
+            $profile = new AdminModel();
 
-            return view('admin/profile', [
+            return view('admin/admin-profile', [
                 'profile'   => $profile->getProfile($id),
                 'validation' => $this->validator
             ]);
         } else {
-            $profile = new UserModel();
+            $profile = new AdminModel();
             $profile->save([
-                'id_user'   => $id,
-                'nama_depan' => $this->request->getPost('namadepan'),
-                'nama_belakang' => $this->request->getPost('namabelakang'),
+                'id_admin'   => $id,
+                'nama' => $this->request->getPost('nama'),
+                'slug' => url_title($data['nama'], '-', true),
                 'email' => $this->request->getPost('email'),
             ]);
 
@@ -52,12 +51,12 @@ class Profile extends BaseController
             'img_profile'   => ['rules' => 'uploaded[img_profile]|max_size[img_profile,2048]|ext_in[img_profile,png,jpg,jpeg]', 'errors' => ['uploaded' => 'gambar berita tidak boleh kosong', 'max_size' => 'ukuran maksimal 2MB', 'ext_in' => 'file hanya boleh png, jpg dan jpeg']]
         ];
         if ($this->validate($rules)) {
-            $user = new UserModel();
+            $user = new AdminModel();
             $image = $this->request->getFile('img_profile');
             $gambar = $image->getRandomName();
             $image->move('assets/img/', $gambar);
             $user->save([
-                'id_user'   => $id,
+                'id_admin'   => $id,
                 'img_profile'   => $gambar
             ]);
             return redirect()->back()->with('success', 'Foto Berhasil Diganti');
@@ -67,19 +66,20 @@ class Profile extends BaseController
 
     public function password($id)
     {
-        $user = new UserModel();
-        $data = $user->find($id);
+        $data = $this->request->getPost();
+        $user = new AdminModel();
+        $dataadmin = $user->find($id);
         $passdatabase = $data['pass_hash'];
         $rules = [
             'passlama'  => 'required',
             'passbaru'  => 'required|min_length[3]'
         ];
         if ($this->validate($rules)) {
-            $passlama = $this->request->getPost('passlama');
-            $passbaru = password_hash($this->request->getPost('passbaru'), PASSWORD_DEFAULT);
+            $passlama = $dataadmin['passlama'];
+            $passbaru = password_hash($data['passbaru'], PASSWORD_DEFAULT);
             if (password_verify($passlama, $passdatabase)) {
                 $user->save([
-                    'id_user'       => $id,
+                    'id_admin'       => $id,
                     'pass_hash'     => $passbaru
                 ]);
                 return redirect()->back()->with('successpas', 'password berhasil diganti');

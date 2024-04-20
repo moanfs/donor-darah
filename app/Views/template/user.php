@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
-<body>
+<body class="">
     <section class="container-fluid">
         <nav class="navbar fixed-top navbar-expand-lg">
             <div class="container">
@@ -90,25 +92,7 @@
         </nav>
     </section>
 
-    <!-- Modal -->
-    <div class="modal fade" id="loginModal" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5>Masuk Ke Donortree</h5>
-                    <p>Saya ingin masuk sebagai</p>
-                    <div class="d-grid gap-2 col-12 mx-auto">
-                        <a href="<?= site_url('login'); ?>" class="btn btn-success py-3"><i class="bi bi-people"></i> User</a>
-                        <h5 class="text-center">Atau</h5>
-                        <a href="<?= site_url('admin/login'); ?>" class="btn btn-outline-danger py-3"><i class="bi bi-person-gear"></i> Administrator</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Main Content -->
     <div class="main-content">
         <?= $this->renderSection('content'); ?>
@@ -116,7 +100,7 @@
     <!-- end Content -->
 
     <!-- Footer -->
-    <div class="container">
+    <div class="container mt-5">
         <footer class="text-center text-lg-start bg-white text-muted">
             <!-- Section: Social media -->
             <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -128,23 +112,20 @@
 
                 <!-- Right -->
                 <div>
-                    <a href="" class="me-4 link-secondary">
+                    <a href="#" class="me-4 link-secondary">
                         <i class="bi bi-facebook-f"></i>
                     </a>
-                    <a href="" class="me-4 link-secondary">
+                    <a href="#" class="me-4 link-secondary">
                         <i class="bi bi-twitter"></i>
                     </a>
-                    <a href="" class="me-4 link-secondary">
+                    <a href="#" class="me-4 link-secondary">
                         <i class="bi bi-google"></i>
                     </a>
-                    <a href="" class="me-4 link-secondary">
+                    <a href="#" class="me-4 link-secondary">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="" class="me-4 link-secondary">
+                    <a href="#" class="me-4 link-secondary">
                         <i class="bi bi-linkedin"></i>
-                    </a>
-                    <a href="" class="me-4 link-secondary">
-                        <i class="bi bi-github"></i>
                     </a>
                 </div>
                 <!-- Right -->

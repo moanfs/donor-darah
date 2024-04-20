@@ -39,10 +39,16 @@ $routes->post('register', 'Auth::attempRegister');
 $routes->get('logout', 'Auth::logout');
 $routes->get('kebijakan-privasi', 'Home::privasi');
 $routes->get('jadwal-donor', 'Jadwal::index');
-$routes->get('jadwal-donor/daftar/(:num)', 'Jadwal::daftar/$1', ['filter' => 'isLogin']);
+
+$routes->get('stok-darah/(:segment)', 'Stok::index/$1');
+
+$routes->get('jadwal-donor/daftar/(:num)', 'Jadwal::daftar/$1', ['filter' => 'isLogin']); //  untuk mendatar donor
 $routes->post('jadwal-donor/daftar/(:num)', 'Jadwal::create/$1', ['filter' => 'isLogin']);
-$routes->get('jadwal-donor/terdaftar', 'Jadwal::terdaftar', ['filter' => 'isLogin']);
-$routes->get('jadwal-donor/terdaftar/lihat/(:num)', 'Jadwal::lihat/$1', ['filter' => 'isLogin']);
+$routes->get('jadwal-donor/terdaftar', 'Jadwal::terdaftar', ['filter' => 'isLogin']); // menampilkaaan data yang sudah didaftar
+$routes->get('jadwal-donor/terdaftar/(:num)', 'Jadwal::show/$1', ['filter' => 'isLogin']); // melihat detail yang sudah didaftar
+$routes->post('jadwal-donor/terdaftar/lihat/(:num)', 'Jadwal::edit/$1', ['filter' => 'isLogin']);
+$routes->post('jadwal-donor/terdaftar/hapus/(:num)', 'Jadwal::delete/$1', ['filter' => 'isLogin']);
+
 $routes->get('berita', 'Berita::index');
 $routes->get('berita/(:num)/(:segment)', 'Berita::lihatberita/$1/$1');
 
@@ -55,6 +61,10 @@ $routes->post('edit-profile-password/(:num)', 'Profile::password/$1');
 $routes->get('auth', 'Admin\Auth::login');
 $routes->post('auth', 'Admin\Auth::attempLogin');
 $routes->get('auth-out', 'Admin\Auth::logout');
+
+// login admin
+$routes->get('login-admin', 'Admin\Auth::login');
+$routes->post('login-admin', 'Admin\Auth::attempLogin');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'Dashboard::index');
@@ -70,6 +80,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     // pendaftar
     $routes->get('pendaftar-donor', 'Pendaftar::index');
     $routes->get('pendaftar-donor/(:num)', 'Pendaftar::show/$1');
+    $routes->get('pendaftar-donor/peserta/(:num)', 'Pendaftar::peserta/$1');
+    $routes->post('pendaftar-donor/selesai/(:num)', 'Pendaftar::selesai/$1');
+    $routes->post('pendaftar-donor/batal/(:num)', 'Pendaftar::batal/$1');
+    $routes->post('pendaftar-donor/absen/(:num)', 'Pendaftar::absen/$1');
+
     //stok darah
     $routes->get('stok-darah', 'Stok::index');
     $routes->get('stok-darah/show/(:num)', 'Stok::show/$1');
@@ -77,6 +92,15 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->post('stok-darah/edit/(:num)', 'Stok::update/$1');
     $routes->get('form-stok-darah', 'Stok::new');
     $routes->post('add-darah', 'Stok::save');
+    $routes->post('stok-darah/delete/(:num)', 'Stok::delete/$1');
+
+    // petugas pmi
+    $routes->get('petugas',  'Petugas::index');
+    $routes->get('form-petugas',  'Petugas::new');
+    $routes->post('form-petugas',  'Petugas::save');
+    $routes->get('petugas/show/(:num)', 'Petugas::show/$1');
+    $routes->post('petugas/delete/(:num)', 'Petugas::delete/$1');
+
 
     // pengguna
     $routes->get('pengguna', 'Pengguna::index');
@@ -93,13 +117,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->post('berita/delete/(:num)', 'Berita::delete/$1');
 
     //profile
-    $routes->get('profile/(:num)/(:segment)', 'Profile::index/$1/$1');
+    $routes->get('profile/(:segment)', 'Profile::index/$1');
     $routes->post('profile/(:num)', 'Profile::update/$1');
     $routes->post('profile-password/(:num)', 'Profile::password/$1');
     $routes->post('profile-img/(:num)', 'Profile::updateimg/$1');
-
-    $routes->post('kabupaten', 'Jadwal::kabupaten');
-    // $routes->
+    $routes->get('logout', 'Auth::logout');
 });
 /*
  * --------------------------------------------------------------------

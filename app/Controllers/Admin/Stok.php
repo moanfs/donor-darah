@@ -3,100 +3,142 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\PmiModel;
 use App\Models\StokModel;
-use App\Models\WilayahModel;
 
 class Stok extends BaseController
 {
     public function index()
     {
         $stok = new StokModel();
-        $wilayah = new WilayahModel();
         $data = [
             'stok' => $stok->getAllStok()
         ];
-        return view('admin/stokdarah', $data);
+        return view('admin/stok-darah', $data);
     }
 
     public function new()
     {
-        $wilayah = new WilayahModel();
+        $pmi = new PmiModel();
         $data = [
-            'validation' => \config\Services::validation(),
-            'kabupaten'  => $wilayah->AllKabupaten(),
+            'validation'    => \config\Services::validation(),
+            'pmi'           => $pmi->getAllPMI(),
+            'petugas'       => $pmi->getPMI(),
         ];
-        return view('admin/form-stok-darah', $data);
+        return view('admin/stok-darah-form', $data);
     }
 
     public function save()
     {
+        $stok = new StokModel();
+        $pmi = new PmiModel();
         $data = $this->request->getPost();
+        $petugas = $pmi->getPMI();
         $rules = [
             'goldar'    => ['rules' => 'required', 'errors' => ['required' => 'golongan darah harus dipilih']],
             'jumlah'    => ['rules' => 'required|alpha_numeric', 'errors' => ['required' => 'jumlah kantong darah tidak boleh kosong', 'alpha_numeric' => 'hanya boleh angka']],
-            'kab_kota'  => ['rules' => 'required', 'errors' => ['required' => 'kab/kota tidak boleh kosong']],
-            'nama_pmi'  => ['rules' => 'required', 'errors' => ['required' => 'Nama PMI tidak boleh kosong']],
-            // 'provinsi'  => ['rules' => 'required', 'errors' => ['required' => 'provinsi tidak boleh kosong']],
         ];
-        if ($this->validate($rules)) {
-            $stok = new StokModel();
-            $stok->save($data);
-            return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil ditambah');
-        } else {
-            $data['validation'] = $this->validator;
-            return view('admin/form-stok-darah', $data);
-        }
-    }
 
-    public function show($id)
-    {
-        $stok = new StokModel();
-        return view('admin/stokdarah-show', [
-            'darah' => $stok->find($id),
-            // 'provinsi'  => 
-        ]);
+        $cekStok = $stok->where('goldar', $this->request->getPost('goldar'))
+            ->where('pmi_id', $this->request->getPost('pmi_id'))
+            ->countAllResults() > 0;
+
+        // untuk membuat slug
+        $lower = strtolower($data['goldar']);
+        $str = str_replace("+", "", $lower);
+        $slug = 'goldar' . '-' . $str;
+
+        if ($this->validate($rules)) {
+            // jika golongan darah dan pmi sama akan ditambah jumlah stok darah saja
+            if ($cekStok) {
+                $getId = $stok->where('goldar', $this->request->getPost('goldar'))
+                    ->where('pmi_id', $this->request->getPost('pmi_id'))
+                    ->get()->getRow();
+
+                // berfungsi mengubah str ke int 
+                $jmllama = intval($getId->jumlah);
+                $jmlbaru = intval($data['jumlah']);
+
+                // dd($slug);
+                $stok->save([
+                    'id_darah'  => $getId->id_darah,
+                    'pmi_id'    => $petugas->id_pmi,
+                    'slug'      => $slug,
+                    'goldar'    => $data['goldar'],
+                    'jumlah'    =>  $jmllama + $jmlbaru,
+                ]);
+                return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil ditambah');
+
+                // jika  tidak sama maka baru dibuat record stok baru
+            } else {
+                $stok->save([
+                    'pmi_id'    => $petugas->id_pmi,
+                    'slug'      => $slug,
+                    'goldar'    => $data['goldar'],
+                    'jumlah'    => $data['jumlah']
+                ]);
+                return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil ditambah');
+            }
+        } else {
+            $data = [
+                'validation'    => $this->validator,
+                'petugas'       => $pmi->getPMI(),
+            ];
+            return view('admin/stok-darah-form', $data);
+        }
     }
 
     public function edit($id)
     {
+        $pmi = new PmiModel();
         $stok = new StokModel();
-        $wilayah = new WilayahModel();
-        return view('admin/stokdarah-edit', [
-            'darah' => $stok->find($id),
-            'validation' => \config\Services::validation(),
-            'kabupaten'  => $wilayah->AllKabupaten(),
-        ]);
+        $data = [
+            'darah'         => $stok->getStok($id),
+            'validation'    => \config\Services::validation(),
+            'petugas'       => $pmi->getPMI()
+        ];
+        return view('admin/stok-darah-edit', $data);
     }
 
     public function update($id)
     {
         $data = $this->request->getPost();
         $stok = new StokModel();
-        $wilayah = new WilayahModel();
+        $pmi = new PmiModel();
+        $petugas = $pmi->getPMI();
+        // untuk membuat slug
+        $lower = strtolower($data['goldar']);
+        $str = str_replace("+", "", $lower);
+        $goldar = 'goldar' . ' ' . $str;
+        $slug = url_title($goldar,  '-', true);
+
         $rules = [
             'goldar'    => ['rules' => 'required', 'errors' => ['required' => 'golongan darah harus dipilih']],
             'jumlah'    => ['rules' => 'required|alpha_numeric', 'errors' => ['required' => 'jumlah kantong darah tidak boleh kosong', 'alpha_numeric' => 'hanya boleh angka']],
-            'kab_kota'  => ['rules' => 'required', 'errors' => ['required' => 'kab/kota tidak boleh kosong']],
-            'nama_pmi'  => ['rules' => 'required', 'errors' => ['required' => 'Nama PMI tidak boleh kosong']],
-            // 'provinsi'  => ['rules' => 'required', 'errors' => ['required' => 'provinsi tidak boleh kosong']],
         ];
         if ($this->validate($rules)) {
-
             $stok->save([
                 'id_darah'  => $id,
+                'pmi_id'    => $petugas->id_pmi,
+                'slug'      => $slug,
                 'goldar'    => $data['goldar'],
-                'jumlah'    => $data['jumlah'],
-                'kab_kota'  => $data['kab_kota'],
-                'nama_pmi'  => $data['nama_pmi']
+                'jumlah'    => $data['jumlah']
             ]);
-            return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil ditambah');
+            return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil edit');
         } else {
             $data = [
-                'darah' => $stok->find($id),
-                'validation' => $this->validator,
-                'kabupaten'  => $wilayah->AllKabupaten(),
+                'darah'         => $stok->find($id),
+                'validation'    => $this->validator,
+                'petugas'       => $pmi->getPMI(),
             ];
-            return view('admin/stokdarah-edit', $data);
+            return view('admin/stok-darah-edit', $data);
         }
+    }
+
+    public function delete($id)
+    {
+        $stok = new StokModel();
+        $stok->delete(['id_stok' => $id]);
+        return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Berhasil Hapus Stok Darah');
     }
 }

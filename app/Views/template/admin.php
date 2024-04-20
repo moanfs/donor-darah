@@ -89,6 +89,15 @@
                             </a>
                         </li>
 
+                        <?php if (session()->role == 0) : ?>
+                            <li class="sidebar-item  ">
+                                <a href="<?= site_url('admin/petugas'); ?>" class='sidebar-link'>
+                                    <i class="bi bi-person-check"></i>
+                                    <span>Admin</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
                         <li class="sidebar-item  ">
                             <a href="<?= site_url('admin/berita'); ?>" class='sidebar-link'>
                                 <i class="bi bi-newspaper"></i>
@@ -99,12 +108,12 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <img src="<?= site_url('assets/img/' . userLogin()->img_profile); ?>" alt="" height="36" width="36" class="rounded-circle me-1">
+                                <img src="<?= site_url('assets/img/' . adminLogin()->img_profile); ?>" alt="" height="36" width="36" class="rounded-circle me-1">
                                 <span>Akun</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="<?= site_url('admin/profile/') . userLogin()->id_user . '/' . userLogin()->slug ?>">Profile</a>
+                                    <a href="<?= site_url('admin/profile/') . adminLogin()->slug ?>">Profile</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a type="button" data-bs-toggle="modal" data-bs-target="#border-less">Logout</a>
@@ -128,12 +137,12 @@
 
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2023 &copy; Donor Darah</p>
-                    </div>
                     <div class="float-end">
-                        <p>Template <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://saugi.me">Saugi</a></p>
+                        <p><?= date('Y') ?> &copy; Donor Darah</p>
                     </div>
+                    <!-- <div class="float-end">
+                        <p>Template <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://saugi.me">Saugi</a></p>
+                    </div> -->
                 </div>
             </footer>
         </div>
@@ -158,7 +167,7 @@
                     </button>
                     <!-- <button type="button" class="" data-bs-dismiss="modal"> -->
                     <!-- <i class="bx bx-check d-block d-sm-none"></i> -->
-                    <a class="btn btn-danger" href="<?= site_url('logout'); ?>">logout</a>
+                    <a class="btn btn-danger" href="<?= site_url('admin/logout'); ?>">logout</a>
                     <!-- </button> -->
                 </div>
             </div>

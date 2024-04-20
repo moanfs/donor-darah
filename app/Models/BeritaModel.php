@@ -21,21 +21,18 @@ class BeritaModel extends Model
     // Dates
     protected $useTimestamps = true;
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
 
     public function getAllBerita()
     {
         return $this->db->table('berita')
+            ->orderBy('id_berita', 'DESC')
             ->get()->getResultArray();
     }
 
     public function getOneBerita()
     {
         return $this->db->table('berita')
+            ->orderBy('id_berita', 'DESC')
             ->limit(1)
             ->get()->getResultArray();
     }

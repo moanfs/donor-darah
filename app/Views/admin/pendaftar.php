@@ -5,11 +5,27 @@
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
+<!-- heading -->
 <div class="page-heading">
-    <h3>Pendaftar Donor Tree</h3>
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Pendaftar Donor Tree</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= site_url('admin'); ?>">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tabel Pendaftar Jadwal</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="page-content">
-    <section class="section">
+<!-- content -->
+<section class="section">
+    <div class="page-content">
         <div class="row" id="table-responsive">
             <div class="col-12">
                 <div class="card">
@@ -22,20 +38,22 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama Pendaftar</th>
-                                    <th scope="col">Nama Kegiatan</th>
                                     <th scope="col">Lokasi </th>
-                                    <th scope="col">Tanggal Kegiatan </th>
+                                    <th scope="col">Tanggal Kegiatan</th>
+                                    <th scope="col">Jam Kegiatan</th>
+                                    <th scope="col">Jumlah Pendaftar</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($data as $key => $value) : ?>
                                     <tr>
                                         <td><?= $key + 1; ?></td>
-                                        <td><?= $value['nama_depan']; ?></td>
-                                        <td><?= $value['nama']; ?></td>
                                         <td><?= $value['lokasi']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($value['date'])) ?></td>
+                                        <td><?= $value['time'] . ' - ' . $value['time_end']; ?> WIB</td>
+                                        <td><?= $value['jadwal_id']; ?> Orang</td>
+                                        <td><a href="<?= site_url('admin/pendaftar-donor/') . $value['id_jadwal']; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -44,7 +62,6 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </section>
-</div>
 <?= $this->endSection(); ?>

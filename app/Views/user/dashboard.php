@@ -67,40 +67,47 @@
     <div class="stokdarah">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; info PMI</p>
         <h2 class="text-center">Stok Darah</h2>
-        <div class="table-responsive border shadow-sm rounded p-3">
-            <table class="table table-hover" id="myTable">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Golongan Darah</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Kab/Kota</th>
-                        <th scope="col">Nama PMI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($stok as $key => $value) : ?>
-                        <tr>
-                            <td><?= $key + 1; ?></td>
-                            <td><?= $value['goldar']; ?></td>
-                            <td><?= $value['jumlah']; ?> Kantong</td>
-                            <td><?= $value['name']; ?></td>
-                            <td><?= $value['nama_pmi']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="table-responsive border shadow-sm rounded p-3">
+                    <table class="table table-sm table-hover" id="">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Golongan Darah</th>
+                                <th scope="col">Jumlah Darah</th>
+                                <th scope="col">Tersedia Di</th>
+                                <th scope="col">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($stok as $key => $value) : ?>
+                                <tr class="text-center">
+                                    <td><?= $value['goldar']; ?></td>
+                                    <td><?= $value['jmlh']; ?> Kantong</td>
+                                    <td><?= $value['pmi']; ?> PMI</td>
+                                    <td><a href="<?= site_url('stok-darah/' . $value['slug']); ?>" class="btn btn-sm btn-primary"><i class="bi bi-eye"></i></a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- <div class="col-md-5">
+                <div>
+
+                </div>
+            </div> -->
         </div>
     </div>
 </div>
 
-<div class="container mt-5" id="berita">
+<div class="container mt-5 mb-5" id="berita">
     <div class="berita">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; Berita</p>
         <h2 class="text-center">Berita Donortree</h2>
         <div class="clearfix">
             <?php foreach ($berita as $key => $value) : ?>
-                <img src="assets/berita/<?= $value['img']; ?>" class="col-md-6 rounded float-md-end mb-3 ms-md-3" width="200rem" alt="berita">
+                <img src="assets/berita/<?= $value['img']; ?>" class="col-md-6 col-sm-8 rounded float-md-end mb-3 ms-md-3" style="max-width: 30rem;" width="" alt="berita">
                 <h5><?= $value['judul']; ?></h5>
                 <span><?= $value['lokasi']; ?></span>
                 <p><?= (str_word_count($value['isi']) > 30 ? substr($value['isi'], 0, 300) : $value['isi']) ?>
@@ -118,7 +125,26 @@
     <div class="kontak">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; Kontak Kami</p>
         <h2 class="text-center">Kontak Donortree</h2>
-        Jika Anda memiliki pertanyaan atau saran tentang Kebijakan Privasi kami, jangan ragu untuk menghubungi kami di donortree@gmail.com
+        <!-- <div class="d-flex justify-content-center"> -->
+        <div class="row col-12">
+            <div class="col-md-4 col-sm-6">
+                <h6>Donortree</h6>
+                <p><i class="bi bi-geo-alt"></i> Jl. Aceh No.79, Cihapit</p>
+                <p><i class="bi bi-telephone-forward"></i> (022) 4207052</p>
+                <p><i class="bi bi-envelope"></i> donortree@gmail.com</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h6>PMI Kota Bandung :</h6>
+                <?php foreach ($pmi as $value) : ?>
+                    <li><?= $value['nama_pmi'] ?></li>
+                <?php endforeach; ?>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <p class="text-md-end text-sm-center">Donortree merupakan website yang membantu pengguna untuk mendapatkan informasi jadwal donor darah, serta mendapatkan informasi mengenai stok darah yang tersedia di PMI Kota Bandung.</p>
+            </div>
+            <!-- </div> -->
+        </div>
     </div>
 </div>
+
 <?= $this->endSection(); ?>

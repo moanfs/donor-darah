@@ -15,33 +15,35 @@ class JadwalModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nama', 'slug', 'date', 'time', 'date_end', 'time_end', 'kab_kota', 'provinsi', 'lokasi',
-        'desc', 'updated_at', 'created_at', 'deleted_at'
+        'pmi_id', 'nama_kegiatan', 'slug', 'date', 'time', 'time_end', 'alamat_kegiatan', 'kontak2', 'lokasi', 'desc', 'jenis_darah',
+        'updated_by', 'created_by', 'deleted_by', 'updated_at', 'created_at', 'deleted_at'
     ];
 
     // Dates
     protected $useTimestamps = true;
 
+    public function getAllDonor()
+    {
+        return $this->db->table('jadwal_donor')
+            ->join('pmi', 'pmi.id_pmi = jadwal_donor.pmi_id')
+            ->where('date >=', date("Y-m-d"))
+            ->get()->getResultArray();
+    }
 
     public function getAllJadwal()
     {
         return $this->db->table('jadwal_donor')
+            ->join('pmi', 'pmi.id_pmi = jadwal_donor.pmi_id')
+            ->orderBy('jadwal_donor.id_jadwal', 'DESC')
             ->get()->getResultArray();
     }
 
-    public function getAllDonor()
-    {
-        // $dateTimeEnd = strtotime($jadwal['date_end'] . ' ' . $jadwal['time_end']);
-        return $this->db->table('jadwal_donor')
-            ->join('regencies', 'regencies.id = jadwal_donor.kab_kota', 'left')
-            // ->where('da')
-            ->get()->getResultArray();
-    }
+
 
     public function getJadwal($id)
     {
         return $this->db->table('jadwal_donor')
-            ->join('regencies', 'regencies.id = jadwal_donor.kab_kota', 'left')
+            ->join('pmi', 'pmi.id_pmi = jadwal_donor.pmi_id')
             ->where('id_jadwal', $id)
             ->get()->getRowObject();
     }

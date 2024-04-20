@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+
 </head>
 
 <body>
     <div class="container d-flex justify-content-center">
-        <div class="card col-md-6 shadow-lg rounded-4">
+        <div class="card col-md-6 col-sm-12 shadow-lg rounded-4">
             <div class="text-center pt-5 fw-semibold fs-4">
                 <img src="<?= base_url() ?>/assets/img/logo.png" alt="Logo" width="28" class="d-inline-block align-text-top">donor<span class="text-danger">tree</span>
                 <p class="mt-5 fw-bold fs-5">Register</p>
@@ -38,7 +39,8 @@
                 <div class="row g-3 mb-2">
                     <div class="col">
                         <label for="exampleInputEmail1" class="form-label fw-semibold">Nik <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control <?= ($validation->hasError('nik')) ? 'is-invalid' : ''; ?>" name="nik" aria-label="nama" minlength="16" maxlength="16" value="<?= set_value('nik'); ?>">
+                        <input type="text" class="form-control <?= ($validation->hasError('nik')) ? 'is-invalid' : ''; ?>" name="nik" aria-label="nama" minlength="16" maxlength="16" value="<?= set_value('nik'); ?>">
+                        <span style="font-size: 0.75rem;">Pastikan Nik 16 Angka</span>
                         <div class="invalid-feedback">
                             <?= $validation->getError('nik'); ?>
                         </div>
@@ -65,11 +67,15 @@
                     <div class="col">
                         <label for="exampleInputEmail1" class="form-label fw-semibold">Golongan Darah</label>
                         <select class="form-select" required aria-label="Default select example" name="goldar">
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="AB">AB</option>
-                            <option value="O">O</option>
-                            <option value="">Belum Tau</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="-">Belum Tahu</option>
                         </select>
                         <div class="invalid-feedback">
                             <?= $validation->getError('goldar'); ?>
@@ -97,21 +103,39 @@
             <p class="text-center mb-5">Sudah punya akun? <a href="<?= site_url('login'); ?>" class="text-primary">Login</a></p>
         </div>
     </div>
+
+
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('tanggal_lahir').addEventListener('input', function() {
-            var selectedDate = new Date(this.value);
-            var currentDate = new Date();
+        var alertShown = false; // Inisialisasi variabel status alert
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('tanggal_lahir').addEventListener('input', function() {
+                var selectedDate = new Date(this.value);
+                var currentDate = new Date();
 
-            // Tambahkan 17 tahun ke tanggal saat ini
-            currentDate.setFullYear(currentDate.getFullYear() - 17);
+                // Tambahkan 17 tahun ke tanggal saat ini
+                currentDate.setFullYear(currentDate.getFullYear() - 17);
 
-            if (selectedDate > currentDate) {
-                alert('Usia Minimal 17 Tahun');
-                this.value = ''; // Reset nilai input jika tidak memenuhi kriteria
-            }
+                if (selectedDate > currentDate) {
+                    if (!alertShown) { // Cek apakah alert belum ditampilkan sebelumnya
+                        // alert('Usia Minimal 17 Tahun');
+                        var alertElement = document.createElement('div');
+                        alertElement.classList.add('custom-alert'); // Menambahkan kelas CSS
+                        alertElement.textContent = 'Usia Minimal 17 Tahun';
+
+                        var parentElement = this.parentNode;
+                        parentElement.insertBefore(alertElement, this.nextSibling);
+                        alertShown = true; // Set status alert menjadi sudah ditampilkan
+                    }
+                    this.value = ''; // Reset nilai input jika tidak memenuhi kriteria
+                } else {
+                    alertShown = false; // Reset status alert jika tanggal yang dimasukkan valid
+                }
+
+            });
         });
     </script>
+
 </body>
 
 </html>

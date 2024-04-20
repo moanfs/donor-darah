@@ -48,11 +48,7 @@ class Auth extends BaseController
                         $slug = ['slug' => $attempt->slug];
                         session()->set($params);
                         session()->set($slug);
-                        if (session('id_user') != 1) {
-                            return redirect()->to(site_url('/'));
-                        } else {
-                            return redirect()->to(site_url('admin'));
-                        }
+                        return redirect()->to('/');
                     } else {
                         return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
                     }
@@ -87,9 +83,7 @@ class Auth extends BaseController
             'namadepan'     => ['rules' => 'required|', 'errors' => ['required' => 'Nama Depan tidak boleh kosong']],
             'namabelakang'  => ['rules' => 'required|', 'errors' => ['required' => 'Nama Belakang tidak boleh kosong']],
             'tgl_lahir'     => ['rules' => 'required|', 'errors' => ['required' => 'Tanggal Lahir tidak boleh kosong']],
-            // 'goldar'        => ['rules' => 'required|', 'errors' => ['required' => 'Golongan Darah tidak boleh kosong']],
-            'nik'           => ['rules' => 'required|', 'errors' => ['required' => 'Nik tidak boleh kosong']],
-            // 'jenis_klamin'  => ['rules' => 'required|', 'errors' => ['required' => 'Jenis Kelamin tidak boleh kosong']],
+            'nik'           => ['rules' => 'required|min_length[16]|max_length[16]|is_unique[users.nik]|integer', 'errors' => ['required' => 'Nik tidak boleh kosong', 'max_length' => 'Nik Harus 16',  'min_length' => 'Nik Harus 16', 'is_unique' => 'Nik sudah Terdaftar', 'integer' => 'NIK Hanya Boleh Angka']],
             'email'         => ['rules' => 'required|is_unique[users.email]', 'errors' => ['required' => 'email tidak boleh kosong', 'is_unique' => 'email sudah terdaftar']],
             'password'      => ['rules' => 'required|', 'errors' => ['required' => 'Password tidak boleh kosong']]
         ];
@@ -117,7 +111,8 @@ class Auth extends BaseController
 
     public function logout()
     {
-        session()->remove('id_user');
+        // session()->remove('id_user');
+        session()->destroy();
         return redirect()->to(site_url('login'));
     }
 }
