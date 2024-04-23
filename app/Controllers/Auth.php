@@ -84,7 +84,7 @@ class Auth extends BaseController
             'namabelakang'  => ['rules' => 'required|', 'errors' => ['required' => 'Nama Belakang tidak boleh kosong']],
             'tgl_lahir'     => ['rules' => 'required|', 'errors' => ['required' => 'Tanggal Lahir tidak boleh kosong']],
             'nik'           => ['rules' => 'required|min_length[16]|max_length[16]|is_unique[users.nik]|integer', 'errors' => ['required' => 'Nik tidak boleh kosong', 'max_length' => 'Nik Harus 16',  'min_length' => 'Nik Harus 16', 'is_unique' => 'Nik sudah Terdaftar', 'integer' => 'NIK Hanya Boleh Angka']],
-            'email'         => ['rules' => 'required|is_unique[users.email]valid_email', 'errors' => ['required' => 'email tidak boleh kosong', 'is_unique' => 'email sudah terdaftar', 'valid_email'  => 'Email tidak valid']],
+            'email'         => ['rules' => 'required|is_unique[users.email]|valid_email', 'errors' => ['required' => 'email tidak boleh kosong', 'is_unique' => 'email sudah terdaftar', 'valid_email'  => 'Email tidak valid']],
             'password'      => ['rules' => 'required|', 'errors' => ['required' => 'Password tidak boleh kosong']]
         ];
         if ($this->validate($rules)) {
