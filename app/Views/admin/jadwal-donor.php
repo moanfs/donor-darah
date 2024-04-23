@@ -74,7 +74,7 @@
                                             <?php endif; ?>
                                             <td><?= $value['time'] . ' - ' . $value['time_end'] ?> WIB </td>
 
-                                            <?php if ($value['date'] > date('d-m-Y')) : ?>
+                                            <?php if ($value['date'] < date('d-m-Y')) : ?>
                                                 <td>Belum Berlangsung</td>
                                             <?php elseif ($value['date'] == date('d-m-Y')) : ?>
                                                 <td>Berlangsung Hari ini</td>

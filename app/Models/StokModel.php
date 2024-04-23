@@ -30,6 +30,7 @@ class StokModel extends Model
             ->join('pmi', 'pmi.id_pmi = stok_darah.pmi_id')
             ->join('kecamatan', 'kecamatan.id_kecamatan=pmi.kec_id')
             ->orderBy('stok_darah.id_darah', 'DESC')
+            // ->groupBy('goldar')
             ->get()->getResultArray();
     }
 

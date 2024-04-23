@@ -84,35 +84,35 @@
                                         <label for="last-name-colu" class="form-label">Golongan Darah Yang Bisa Donor</label>
                                         <div class="form-control <?= ($validation->hasError('pilihan')) ? 'is-invalid' : ''; ?>">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="aa" value="A+" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="aa" value="A+">
                                                 <label class="form-check-label" for="aa">A+</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="a" value="A-" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="a" value="A-">
                                                 <label class="form-check-label" for="a">A-</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="bb" value="B+" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="bb" value="B+">
                                                 <label class="form-check-label" for="bb">B+</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="b" value="B-" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="b" value="B-">
                                                 <label class="form-check-label" for="b">B-</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="abab" value="AB+" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="abab" value="AB+">
                                                 <label class="form-check-label" for="abab">AB+</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="ab" value="AB-" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="ab" value="AB-">
                                                 <label class="form-check-label" for="ab">AB-</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="oo" value="O+" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="oo" value="O+">
                                                 <label class="form-check-label" for="oo">O+</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="o" value="O-" checked>
+                                                <input class="form-check-input" name="pilihan[]" type="checkbox" id="o" value="O-">
                                                 <label class="form-check-label" for="o">O-</label>
                                             </div>
                                         </div>

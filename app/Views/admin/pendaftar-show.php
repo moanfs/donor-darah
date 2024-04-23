@@ -34,26 +34,7 @@
                 </div>
             </div>
         <?php endif; ?>
-        <div class="col-12 col-md-4">
-            <div class="card ">
-                <div class="card-body m-auto">
-                    <div class="pr-50">
-                        <div class="avatar avatar-2xl">
-                            <img src="<?= base_url('assets/img/'), $peserta->img_profile; ?>" alt="Avatar" style="width: 15rem; height: auto;">
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-actions mx-auto mb-2">
-                    <?php if ($peserta->status == 0) : ?>
-                        <button data-bs-toggle="modal" data-bs-target="#absen" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Peserta Tidak Hadir</button>
-                    <?php elseif ($peserta->status == 3) : ?>
-                        <button data-bs-toggle="modal" data-bs-target="#hadir" class="btn icon icon-left btn-info me-2 text-nowrap"><i class="bi bi-x-circle"></i> Peserta Telah Hadir</button>
-                    <?php else : ?>
-                        <p><?= $peserta->nama_depan; ?> <?= $peserta->nama_belakang; ?></p>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
+
         <div class="col-12 col-md-8">
             <div class="card">
                 <div class="card-body">
@@ -101,8 +82,7 @@
                                     <form action="<?= site_url('admin/pendaftar-donor/batal/' . $peserta->id_daftar); ?>" method="post">
                                         <div class="row g-3">
                                             <p class="col-3"><button class="btn btn-success">Donor Tidak Bisa Dilakukan</button></p>
-                                            <p class="col-3">Alasan Tidak bisa Donor</p>
-                                            <p class="col"><input type="text" name="keterangan" class="form-control"></p>
+                                            <p class="col"><input type="text" name="keterangan" class="form-control" placeholder="Alasan Tidak bisa Donor"></p>
                                         </div>
                                     </form>
                                     <!-- untuk merubah status donor selesai -->
@@ -133,13 +113,38 @@
                                     <?php endif; ?>
 
                                 <?php endif; ?>
+                                <div class="row g-2">
+                                    <?php if ($peserta->status == 0) : ?>
+                                        <p> <button data-bs-toggle="modal" data-bs-target="#absen" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Peserta Tidak Hadir</button></p>
+                                    <?php elseif ($peserta->status == 3) : ?>
+                                        <p><button data-bs-toggle="modal" data-bs-target="#hadir" class="btn icon icon-left btn-info me-2 text-nowrap"><i class="bi bi-x-circle"></i> Peserta Telah Hadir</button></p>
+                                    <?php else : ?>
+                                        <p><?= $peserta->nama_depan; ?> <?= $peserta->nama_belakang; ?></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- profile -->
+        <div class="col-12 col-md-4">
+            <div class="card ">
+                <div class="card-body m-auto">
+                    <div class="pr-50">
+                        <div class="avatar avatar-2xl">
+                            <img src="<?= base_url('assets/img/'), $peserta->img_profile; ?>" alt="Avatar" style="width: 15rem; height: auto;">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="comment-actions mx-auto mb-2">
+
+            </div> -->
+            </div>
+        </div>
     </div>
+
 </section>
 
 <!-- modal konfirmasi peserta tidak hadir -->
