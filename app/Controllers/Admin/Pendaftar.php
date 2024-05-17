@@ -65,7 +65,7 @@ class Pendaftar extends BaseController
         $kondisi = $daftar->getKondisi($id);
         // dd($kondisi);
         // cek kondisi kegiatan sudah dimulai apa belum
-        if (!$kondisi) {
+        if ($kondisi) {
             $daftar->save([
                 'id_daftar' => $id,
                 'status'    => 1
