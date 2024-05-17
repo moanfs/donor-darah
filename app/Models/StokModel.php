@@ -24,6 +24,12 @@ class StokModel extends Model
     /*
     * Admin
     */
+    public function stok()
+    {
+        return $this->db->table('stok_darah')
+            ->get()->getResultArray();
+    }
+
     public function getAllStok()
     {
         return $this->db->table('stok_darah')

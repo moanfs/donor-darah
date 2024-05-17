@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Models\DaftarModel;
 use App\Models\JadwalModel;
 use App\Models\PmiModel;
+use App\Models\StokModel;
+use App\Models\UserModel;
 
 class Pendaftar extends BaseController
 {
@@ -46,16 +48,58 @@ class Pendaftar extends BaseController
     public function selesai($id)
     {
         $daftar = new DaftarModel();
+        $stok =  new StokModel();
+        // $data = $daftar->find($id);
+        $data = $this->request->getPost();
+
+        $cekStok = $stok->where('goldar', $this->request->getPost('goldar'))
+            ->where('pmi_id', $this->request->getPost('pmi_id'))
+            ->countAllResults() > 0;
+        // dd($cekStok);
+
+        // untuk membuat slug
+        $lower = strtolower($data['goldar']);
+        $str = str_replace("+", "", $lower);
+        $slug = 'goldar' . '-' . $str;
+
         $kondisi = $daftar->getKondisi($id);
+        // dd($kondisi);
         // cek kondisi kegiatan sudah dimulai apa belum
-        if ($kondisi) {
+        if (!$kondisi) {
             $daftar->save([
                 'id_daftar' => $id,
                 'status'    => 1
             ]);
-            return redirect()->back()->with('success', 'Donor Selesai, Ucapkan Terima Kasih Pada Pendonor');
+            if ($cekStok) {
+                $getId = $stok->where('goldar', $this->request->getPost('goldar'))
+                    ->where('pmi_id', $this->request->getPost('pmi_id'))
+                    ->get()->getRow();
+
+                // berfungsi mengubah str ke int 
+                $jmllama = intval($getId->jumlah);
+                $jmlbaru = 1;
+
+                // dd($slug);
+                $stok->save([
+                    'id_darah'  => $getId->id_darah,
+                    'pmi_id'    => $this->request->getPost('pmi_id'),
+                    'slug'      => $slug,
+                    'goldar'    => $data['goldar'],
+                    'jumlah'    =>  $jmllama + $jmlbaru,
+                ]);
+
+                // jika  tidak sama maka baru dibuat record stok baru
+            } else {
+                $stok->save([
+                    'pmi_id'    => $this->request->getPost('pmi_id'),
+                    'slug'      => $slug,
+                    'goldar'    => $data['goldar'],
+                    'jumlah'    => $data['jumlah']
+                ]);
+            }
+            return redirect()->back()->with('success', 'Donor Selesai, Ucapkan Terima Kasih Pada Pendonor dan stok telah ditambah 1 dengan golongan darah ' . $data['goldar']);
         } else {
-            return redirect()->back()->with('errors', 'Kegiatan Belum Dimulai');
+            return redirect()->back()->with('errors', 'Kegiatan Belum Dimulai / Sudah Lewat');
         }
     }
 
@@ -79,7 +123,7 @@ class Pendaftar extends BaseController
                 return redirect()->back()->withInput()->with('errors', 'Keterangan Tidak Boleh Kosong');
             }
         } else {
-            return redirect()->back()->withInput()->with('errors', '<b> GAGAL!!</b> Kegiatan Belum Dimulai');
+            return redirect()->back()->withInput()->with('errors', '<b> GAGAL!!</b> Kegiatan Belum Dimulai / Sudah Lewat');
         }
     }
 
@@ -94,7 +138,7 @@ class Pendaftar extends BaseController
             ]);
             return redirect()->back();
         } else {
-            return redirect()->back()->withInput()->with('errors', '<b> GAGAL!!</b> Kegiatan Belum Dimulai');
+            return redirect()->back()->withInput()->with('errors', '<b> GAGAL!!</b> Kegiatan Belum Dimulai / Sudah Lewat');
         }
     }
 }

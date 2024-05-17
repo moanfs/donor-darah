@@ -8,7 +8,7 @@
 <div class="container mt-5" id="beranda">
     <div class="row">
         <div class="col-sm-6 col-md-6">
-            <img class="img-fluid" src="assets/img/gambar1.png" alt="brand">
+            <img class="img-fluid" src="assets/img/sl_050622_50190_20.jpg" alt="brand">
         </div>
         <div class="col-sm-5 offset-sm-2 col-md-5 m-auto">
             <h4>Langka Kecil Untuk Memberi</h4>

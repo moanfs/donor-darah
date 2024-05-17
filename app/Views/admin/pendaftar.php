@@ -10,7 +10,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Pendaftar Donor Tree</h3>
+                <h3>Kegiatan Donor Darah</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -30,7 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header col-sm-12 d-flex justify-content-between">
-                        <h4 class="card-title">Tabel Pendaftar Kegiatan Donor</h4>
+                        <h4 class="card-title">Tabel Kegiatan Donor Darah</h4>
                     </div>
                     <!-- table responsive -->
                     <div class="table-responsive p-3">

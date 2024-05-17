@@ -34,6 +34,13 @@
                 </div>
             </div>
         <?php endif; ?>
+        <?php if (session()->getFlashdata('success')) : ?>
+            <div class="alert alert-success alert-dismissible show fade mx-5">
+                <div class="alert-body text-center">
+                    <?= session()->getFlashdata('success'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div class="col-12 col-md-8">
             <div class="card">
@@ -88,6 +95,8 @@
                                     <!-- untuk merubah status donor selesai -->
                                     <form action="<?= site_url('admin/pendaftar-donor/selesai/' . $peserta->id_daftar); ?>" method="post">
                                         <div class="row g-3 ">
+                                            <input type="hidden" name="pmi_id" value="<?= $peserta->pmi_id; ?>">
+                                            <input type="hidden" name="goldar" value="<?= $peserta->goldar; ?>">
                                             <p class="col-3"><button class="btn btn-primary">Donor Telah Selesai</button></p>
                                             <!-- <p class="col-3">Jumlah Darah Yang Diperoleh</p>
                                             <p class="col"><input type="number" name="jumlah" class="form-control"></p> -->

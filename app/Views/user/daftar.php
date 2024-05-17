@@ -24,9 +24,10 @@
         </div>
         <input type="text" name="user_id" value="<?= userLogin()->id_user; ?>" hidden>
         <input type="text" name="jadwal_id" value="<?= $jadwal->id_jadwal; ?>" hidden>
+        <input type="text" name="pmi_id" value="<?= $jadwal->pmi_id; ?>" hidden>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Golongan Darah Anda</label>
-            <input type="text" class="form-control" value="<?= userLogin()->goldar; ?>" id="exampleInputPassword1" readonly>
+            <input type="text" class="form-control" name="goldar" value="<?= userLogin()->goldar; ?>" id="exampleInputPassword1" readonly>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Golongan Darah Yang Dapat Melakukan Donor</label>

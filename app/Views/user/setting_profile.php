@@ -83,7 +83,7 @@
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <label for="tanggallahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
+                            <label for="tanggallahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-sm-9">
                                 <input type="date" class="form-control-plaintext" name="tanggallahir" id="tanggallahir" value="<?= $profile->tanggal_lahir; ?>">
                                 <div class="invalid-feedback">
