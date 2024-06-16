@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body class="">
@@ -28,23 +28,23 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarText">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link" aria-current="page" href="/#beranda">Beranda</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link" href="/#about">Tentang Kami</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link" href="/#stokdarah">Stok Darah</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link" href="/#berita">Berita</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown text-center">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Info Donor
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu text-center">
                                 <li><a class="dropdown-item" href="<?= site_url('jadwal-donor'); ?>">Jadwal Donor Darah</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -56,7 +56,7 @@
                                 <li><a class="dropdown-item" href="<?= site_url('kebijakan-privasi'); ?>">Kebijakan Privasi</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link" href="/#kontak">Kontak</a>
                         </li>
                     </ul>
@@ -164,8 +164,16 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="<?= base_url(); ?>/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         let table = new DataTable('#myTable');
+    </script>
+    <script>
+        AOS.init({
+            duration: 1500,
+            once: false,
+            offset: 150,
+        });
     </script>
 </body>
 

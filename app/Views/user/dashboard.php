@@ -5,12 +5,12 @@
 <?= $this->endSection(); ?>
 
 <?= $this->Section('content'); ?>
-<div class="container mt-5" id="beranda">
-    <div class="row">
+<div class="container hero  d-flex align-items-center" id="beranda">
+    <div class="row flex ">
         <div class="col-sm-6 col-md-6">
             <img class="img-fluid" src="assets/img/sl_050622_50190_20.jpg" alt="brand">
         </div>
-        <div class="col-sm-5 offset-sm-2 col-md-5 m-auto">
+        <div class="col-sm-5 offset-sm-2 col-md-5 m-auto ">
             <h4>Langka Kecil Untuk Memberi</h4>
             <h2>Dampak Besar</h2>
             <p>Ayo donor darah sekarang dan berikan dampak yang besar bagi yang membutuhkan</p>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="container mt-5" id="about">
+<div class="container mt-5" id="about" data-aos="fade-up">
     <div class="about">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; About Us</p>
         <h2 class="text-center mb-4">Ayo donor darah</h2>
@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<div class="container mt-5" id="stokdarah">
+<div class="container mt-5" id="stokdarah" data-aos="fade-up">
     <div class="stokdarah">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; info PMI</p>
         <h2 class="text-center">Stok Darah</h2>
@@ -101,7 +101,7 @@
     </div>
 </div>
 
-<div class="container mt-5 mb-5" id="berita">
+<div class="container mt-5 mb-5" id="berita" data-aos="fade-up">
     <div class="berita">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; Berita</p>
         <h2 class="text-center">Berita Donortree</h2>
@@ -121,7 +121,7 @@
     </div>
 </div>
 
-<div class="container mt-5" id="kontak">
+<div class="container mt-5" id="kontak" data-aos="fade-up">
     <div class="kontak">
         <p class="font-monospace text-center text-danger">&mdash;&mdash; Kontak Kami</p>
         <h2 class="text-center">Kontak Donortree</h2>
