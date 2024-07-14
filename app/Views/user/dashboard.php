@@ -80,6 +80,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- perulangan -->
                             <?php foreach ($stok as $key => $value) : ?>
                                 <tr class="text-center">
                                     <td><?= $value['goldar']; ?></td>

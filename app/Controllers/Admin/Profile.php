@@ -69,13 +69,13 @@ class Profile extends BaseController
         $data = $this->request->getPost();
         $user = new AdminModel();
         $dataadmin = $user->find($id);
-        $passdatabase = $data['pass_hash'];
+        $passdatabase = $dataadmin['pass_hash'];
         $rules = [
             'passlama'  => 'required',
             'passbaru'  => 'required|min_length[3]'
         ];
         if ($this->validate($rules)) {
-            $passlama = $dataadmin['passlama'];
+            $passlama = $data['passlama'];
             $passbaru = password_hash($data['passbaru'], PASSWORD_DEFAULT);
             if (password_verify($passlama, $passdatabase)) {
                 $user->save([
