@@ -55,5 +55,6 @@ abstract class BaseController extends Controller
         session();
         // E.g.: $this->session = \Config\Services::session();
         // $this->session = \Config\Services::session();
+        $email = \Config\Services::email();
     }
 }

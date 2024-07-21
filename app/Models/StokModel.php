@@ -48,6 +48,16 @@ class StokModel extends Model
             ->get()->getRowArray();
     }
 
+    public function kurangiStok($id, $jumlah)
+    {
+        $stok = $this->find($id);
+        if ($stok && $stok['jumlah'] > $jumlah) {
+            $this->update($id, ['jumlah' => $stok['jumlah'] - $jumlah]);
+            return true;
+        }
+        return false;
+    }
+
     /*
     * User
     */

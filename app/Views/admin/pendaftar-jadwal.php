@@ -36,7 +36,7 @@
                     </div>
                     <!-- table responsive -->
                     <div class="table-responsive p-3">
-                        <table class="table mb-0" id="myTable">
+                        <table class="table mb-0" id="tdaftar">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -76,5 +76,18 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+        var table = $('#tdaftar').DataTable({
+            language: {
+                searchPlaceholder: "Nama Peserta"
+            },
+            // Konfigurasi lainnya
+        });
 
+        $('input').on('keyup', function() {
+            table.column(1).search(this.value).draw();
+        });
+    });
+</script>
 <?= $this->endSection(); ?>

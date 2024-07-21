@@ -54,15 +54,21 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">PMI Penyelenggara</label>
-                                        <input type="text" id="last-name-colu" forma class="form-control" name="kontak" value="<?= $petugas->nama_pmi ?>" disabled>
+                                        <fieldset class="form-group">
+                                            <select class="form-select " id="basicSelect" name="pmi_id">
+                                                <?php foreach ($pmi as $data) : ?>
+                                                    <option value="<?= $data['id_pmi'] ?>" <?= ($data['id_pmi'] == $petugas->id_pmi) ? 'selected' : ''; ?>><?= $data['nama_pmi'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </fieldset>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="first-name-colum" class="form-label">Lokasi Kegiatan</label>
-                                        <input type="text" id="first-name-colum" class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" placeholder="lokasi kegiatan" name="lokasi" value="<?= $petugas->nama_pmi ?>">
-                                        <div id="emailHelp" class="form-text">Lokasi Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div>
+                                        <input type="text" id="first-name-colum" class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" placeholder="lokasi kegiatan (nama tempat)" name="lokasi" value="<?= old('lokasi') ?>">
+                                        <!-- <div id="emailHelp" class="form-text">Lokasi Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div> -->
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('lokasi'); ?>
                                         </div>
@@ -71,15 +77,16 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="country-floating" class="form-label">Alamat Kegiatan</label>
-                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('alamat_kegiatan')) ? 'is-invalid' : ''; ?>" name="alamat_kegiatan" placeholder="alamat kegiatan" value="<?= $petugas->alamat ?>">
-                                        <div id="emailHelp" class="form-text">Alamat Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div>
+                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('alamat_kegiatan')) ? 'is-invalid' : ''; ?>" name="alamat_kegiatan" placeholder="alamat kegiatan (alamat tempat)">
+
+                                        <!-- <div id="emailHelp" class="form-text">Alamat Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div> -->
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('alamat_kegiatan'); ?>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">Golongan Darah Yang Bisa Donor</label>
                                         <div class="form-control <?= ($validation->hasError('pilihan')) ? 'is-invalid' : ''; ?>">
@@ -121,12 +128,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <!-- <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="last-name-colu" class="form-label">Kontak PMI</label>
-                                        <input type="text" id="last-name-colu" forma class="form-control" name="kontak" value="<?= $petugas->kontak ?>" disabled>
+                                        <label for="last-name-colu" class="form-label">Kontak Tambahan (Jika Diperlukan)</label>
+                                        <input type="number" id="last-name-colu" forma class="form-control" name="kontak2" value="">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">

@@ -135,10 +135,37 @@ class Stok extends BaseController
         }
     }
 
+    public function min($id)
+    {
+        $stok = new StokModel();
+        $data = $this->request->getPost('kurang');
+        $rules = [
+            'kurang'    => ['rules' => 'required', 'errors' => ['required' => 'Jumlah yang dikurangai tidak boleh kosong']],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->with('message', 'Jumlah yang dikurangkan tidak boleh kosong');
+        }
+        // dd($data);
+        if ($stok->kurangiStok($id, $data)) {
+            return redirect()->back()->with('message', 'Stok darah berhasil dikurangi.');
+            // return redirect()->to(site_url('/admin/stok-darah-edit/' . $id))->with('message', 'Stok darah berhasil dikurangi.');
+        } else {
+            return redirect()->back()->with('message', 'Jumlah Stok Darah yang dikurangkan tidak boleh lebih besar dari sisa stok');
+        }
+    }
+
     public function delete($id)
     {
         $stok = new StokModel();
-        $stok->delete(['id_stok' => $id]);
+        $data = $this->request->getPost('hapus');
+        $stk = $stok->find($id);
+        if ($data != $stk['jumlah']) {
+            return redirect()->back()->with('error', 'Jumlah Stok Darah yang tersisa Salah');
+        } else {
+            $stok->delete(['id_stok' => $id]);
+        }
+
         return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Berhasil Hapus Stok Darah');
     }
 }

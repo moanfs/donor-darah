@@ -15,7 +15,7 @@ class Dashboard extends BaseController
         $pmi   = new PmiModel();
         return view('admin/index', [
             'donor'     => $daftar->getTopDonor(),
-            'pmi'       => $pmi->getAllPMI(),
+            'pmi'       => $pmi->getAllPMIAdmin(),
         ]);
     }
 }

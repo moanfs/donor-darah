@@ -13,6 +13,7 @@ class Home extends BaseController
         $stok = new StokModel();
         $berita = new BeritaModel();
         $pmi = new PmiModel();
+        //Array
         $data = [
             'stok'      => $stok->getStokByGol(),
             'berita'    => $berita->getOneBerita(),

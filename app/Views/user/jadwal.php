@@ -51,4 +51,18 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var table = $('#uJadwal').DataTable({
+            language: {
+                searchPlaceholder: "Lokasi Kegiatan"
+            },
+            // Konfigurasi lainnya
+        });
+
+        $('input').on('keyup', function() {
+            table.column(1).search(this.value).draw();
+        });
+    });
+</script>
 <?= $this->endSection(); ?>

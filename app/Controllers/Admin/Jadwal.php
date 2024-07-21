@@ -41,6 +41,7 @@ class Jadwal extends BaseController
         $pilihan = $this->request->getVar('pilihan');
         $darah['pilihan'] = serialize($pilihan);
         $data = $this->request->getPost();
+        // dd($data);
         $slug = url_title($data['nama_kegiatan'], '-', true);
         // validasi rules
         $rules = [
@@ -71,11 +72,12 @@ class Jadwal extends BaseController
                     $jadwalModel->save([
                         'nama_kegiatan'     => $data['nama_kegiatan'],
                         'slug'              => $slug,
-                        'pmi_id'            => $petugas->id_pmi,
+                        'pmi_id'            => $data['pmi_id'],
                         'date'              => $data['date'],
                         'time'              => $data['time'],
                         'time_end'          => $data['time_end'],
                         'lokasi'            => $data['lokasi'],
+                        // 'kontak2'           => $data['kontak2'],
                         'alamat_kegiatan'   => $data['alamat_kegiatan'],
                         'desc'              => $data['desc'],
                         'jenis_darah'       => $darah,
@@ -138,7 +140,8 @@ class Jadwal extends BaseController
                 $jadwalModel->save([
                     'id_jadwal' => $id,
                     'slug'              => $slug,
-                    'pmi_id'            => $petugas->id_pmi,
+                    // 'pmi_id'            => $petugas->id_pmi,
+                    'pmi_id'            => $data['pmi_id'],
                     'date'              => $data['date'],
                     'time'              => $data['time'],
                     'time_end'          => $data['time_end'],
@@ -165,7 +168,15 @@ class Jadwal extends BaseController
     public function delete($id)
     {
         $jadwal  = new JadwalModel();
-        $jadwal->delete(['id_jadwal' => $id]);
+        $data = $this->request->getPost('hapus');
+        $jwl = $jadwal->find($id);
+        // dd($jwl['lokasi']);
+        // dd($data);
+        if ($data != $jwl['lokasi']) {
+            return redirect()->back()->with('error', 'Lokasi Kegiatan Salah');
+        } else {
+            $jadwal->delete(['id_jadwal' => $id]);
+        }
         return redirect()->to(site_url('admin/jadwal-donor'))->with('message', 'Berhasil Hapus Jadwal');
     }
 }

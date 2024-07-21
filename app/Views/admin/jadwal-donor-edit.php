@@ -35,6 +35,13 @@
                     <div class="card-body">
                         <form class="form" data-parsley-validate method="post" action="<?= site_url('admin/edit-jadwal/') . $jadwal->id_jadwal; ?>">
                             <div class="row">
+                                <?php if (session()->getFlashdata('error')) : ?>
+                                    <div class="alert alert-danger alert-dismissible show fade mx-5">
+                                        <div class="alert-body text-center">
+                                            <?= session()->getFlashdata('error'); ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="first-name-colum" class="form-label">Nama Kegiatan</label>
@@ -47,7 +54,13 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">PMI Penyelenggara</label>
-                                        <input type="text" id="last-name-colu" forma class="form-control" name="kontak" value="<?= $petugas->nama_pmi ?>" disabled>
+                                        <fieldset class="form-group">
+                                            <select class="form-select " id="basicSelect" name="pmi_id">
+                                                <?php foreach ($pmi as $data) : ?>
+                                                    <option value="<?= $data['id_pmi'] ?>" <?= ($data['id_pmi'] == $jadwal->id_pmi) ? 'selected' : ''; ?>><?= $data['nama_pmi'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </fieldset>
                                     </div>
                                 </div>
 
@@ -55,7 +68,7 @@
                                     <div class="form-group mandatory">
                                         <label for="country-floating" class="form-label">Lokasi</label>
                                         <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" name="lokasi" placeholder="lokasi" value="<?= $jadwal->lokasi ?>">
-                                        <div id="emailHelp" class="form-text">Lokasi Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div>
+                                        <!-- <div id="emailHelp" class="form-text">Lokasi Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div> -->
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('lokasi'); ?>
                                         </div>
@@ -64,15 +77,15 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="country-floating" class="form-label">Alamat Kegiatan</label>
-                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('alamat_kegiatan')) ? 'is-invalid' : ''; ?>" name="alamat_kegiatan" placeholder="alamat kegiatan" value="<?= $jadwal->alamat ?>">
-                                        <div id="emailHelp" class="form-text">Alamat Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div>
+                                        <input type="text" id="country-floating" class="form-control <?= ($validation->hasError('alamat_kegiatan')) ? 'is-invalid' : ''; ?>" name="alamat_kegiatan" placeholder="alamat kegiatan" value="<?= $jadwal->alamat_kegiatan ?>">
+                                        <!-- <div id="emailHelp" class="form-text">Alamat Kegiatan Dapat Diubah jika Kegiatan dilakukan Di lokasi yang berbeda.</div> -->
                                         <div class="invalid-feedback">
                                             <?= $validation->getError('alamat_kegiatan'); ?>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">Golongan Darah Yang Bisa Donor</label>
                                         <?php $pilihan = unserialize($jadwal->jenis_darah) ?>
@@ -115,12 +128,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <!-- <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-colu" class="form-label">Kontak PMI</label>
                                         <input type="text" id="last-name-colu" forma class="form-control" name="kontak" value="<?= $petugas->kontak ?>" disabled>
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <div class="col-md-12 col-12">
@@ -177,40 +190,6 @@
             </div>
         </div>
     </div>
-    <!-- informasi edit, upload, hapus -->
-    <!-- <div class="row match-height">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Informasi Tambahan</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mandatory">
-                                    <label for="last-name-colu" class="form-label">Di Unggah Oleh</label>
-                                    <input type="text" id="last-name-colu" forma class="form-control" value="<?= $jadwal->created_by ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mandatory">
-                                    <label for="last-name-colu" class="form-label">Di Edit Oleh</label>
-                                    <input type="text" id="last-name-colu" forma class="form-control" value="<?= $jadwal->updated_by ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-12">
-                                <div class="form-group mandatory">
-                                    <label for="last-name-colu" class="form-label">Dihapus Oleh</label>
-                                    <input type="text" id="last-name-colu" forma class="form-control" value="<?= $jadwal->deleted_at ?>" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </section>
 
@@ -227,13 +206,19 @@
             <div class="modal-body">
                 <h4 class="text-center">Anda yakin ingin hapus Jadwal!!</h4>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
-                    <i class="bx bx-x d-block d-sm-none"></i>
-                    <span class="d-none d-sm-block">Close</span>
-                </button>
+            <div class="modal-footer d-flex row">
                 <form action="<?= site_url('admin/hapus-jadwal/') . $jadwal->id_jadwal ?>" method="post">
-                    <button type="submit" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Hapus</button>
+                    <div class="form-group mandatory">
+                        <label for="email-id-column" class="form-label">Masukan Lokasi Kegiatan Untuk Menghapus</label>
+                        <input type="text" class="form-control" name="hapus" required>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn icon icon-left btn-danger me-2 text-nowrap"><i class="bi bi-x-circle"></i> Hapus</button>
+                        <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

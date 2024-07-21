@@ -23,6 +23,13 @@ class PmiModel extends Model
 
     public function getAllPMI()
     {
+        // return $this->db->table('pmi')
+        //     ->get()->getResultObject();
+        return $this->findAll();
+    }
+
+    public function getAllPMIAdmin()
+    {
         return $this->db->table('pmi')
             ->get()->getResultObject();
     }
