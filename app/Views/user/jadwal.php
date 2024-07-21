@@ -12,14 +12,23 @@
             <div class="text-center">
                 <h5 class="card-title mb-3">Jadwal Donor Tersedia </h5>
             </div>
+            <div class="form-group my-2">
+                <label for="kecamatan">Filter Alamat :</label>
+                <select id="kecamatan" class="form-control">
+                    <option value="">Semua Kecamatan</option>
+                    <?php foreach ($kecamatan as $kec) : ?>
+                        <option value="<?= $kec['kecamatan']; ?>"><?= $kec['kecamatan']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <div class="table-responsive">
-                <table class="table table-striped" id="myTable">
+                <table class="table table-striped" id="uJadwal">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
                             <th scope="col">Penyelenggara</th>
-                            <th scope="col">Lokasi Kegiatan</th>
                             <th scope="col">Alamat</th>
+                            <!-- <th scope="col">Lokasi Kegiatan</th>
+                            <th scope="col">Alamat</th> -->
                             <th scope="col">Golongan Darah Yang Dibutuhkan</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Jam Kegiatan</th>
@@ -27,12 +36,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($jadwal as $key => $value) : ?>
+                        <?php foreach ($jadwal as $value) : ?>
                             <tr>
-                                <td><?= $key + 1; ?></td>
                                 <td><?= $value['nama_pmi']; ?></td>
-                                <td><?= $value['lokasi']; ?></td>
-                                <td><?= $value['alamat']; ?></td>
+                                <!-- <td><?= $value['lokasi']; ?></td> -->
+                                <td><?= $value['kecamatan']; ?></td>
                                 <?php $pilihan = unserialize($value['jenis_darah']); ?>
                                 <?php if (count($pilihan) <= 7) : ?>
                                     <td><?= $pilihanString = implode(', ', $pilihan); ?></td>
@@ -51,18 +59,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        var table = $('#uJadwal').DataTable({
-            language: {
-                searchPlaceholder: "Lokasi Kegiatan"
-            },
-            // Konfigurasi lainnya
-        });
 
-        $('input').on('keyup', function() {
-            table.column(1).search(this.value).draw();
-        });
-    });
-</script>
 <?= $this->endSection(); ?>

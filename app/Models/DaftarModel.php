@@ -91,8 +91,8 @@ class DaftarModel extends Model
     {
         return $this->join('jadwal_donor', 'jadwal_donor.id_jadwal=daftar_donor.jadwal_id')
             ->where('id_daftar', $id)
-            ->where('date', date('d-m-Y'))
-            ->where('time', date('H:i'))
+            ->where('date', date('Y-m-d'))
+            // ->where('time', date('H:i'))
             ->get()->getRowObject();
     }
 }

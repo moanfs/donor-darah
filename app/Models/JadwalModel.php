@@ -26,7 +26,8 @@ class JadwalModel extends Model
     {
         return $this->db->table('jadwal_donor')
             ->join('pmi', 'pmi.id_pmi = jadwal_donor.pmi_id')
-            ->where('date >=', date("Y-m-d"))
+            ->join('kecamatan', 'kecamatan.id_kecamatan = pmi.kec_id')
+            ->where('date >', date("Y-m-d"))
             ->get()->getResultArray();
     }
 

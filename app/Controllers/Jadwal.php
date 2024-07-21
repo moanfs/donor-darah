@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\DaftarModel;
 use App\Models\JadwalModel;
+use App\Models\KecematanModel;
 use App\Models\UserModel;
 
 
@@ -13,7 +14,11 @@ class Jadwal extends BaseController
     public function index()
     {
         $jadwalModel = new JadwalModel();
-        $data['jadwal'] = $jadwalModel->getAllDonor();
+        $kecamatan = new KecematanModel();
+        $data = [
+            'jadwal' => $jadwalModel->getAllDonor(),
+            'kecamatan' => $kecamatan->findAll()
+        ];
         return view('user/jadwal', $data);
     }
 

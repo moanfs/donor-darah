@@ -166,7 +166,23 @@
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        let table = new DataTable('#myTable');
+        $(document).ready(function() {
+            var table = $('#uJadwal').DataTable({
+                language: {
+                    searchPlaceholder: "Berdasarkan Golongan Darah"
+                },
+                // Konfigurasi lainnya
+                // searching: false
+            });
+
+            $('#kecamatan').on('change', function() {
+                table.columns(1).search(this.value).draw();
+            });
+
+            $('input').on('keyup', function() {
+                table.column(2).search(this.value).draw();
+            });
+        });
     </script>
     <script>
         AOS.init({
