@@ -62,7 +62,8 @@ class Stok extends BaseController
                 // dd($slug);
                 $stok->save([
                     'id_darah'  => $getId->id_darah,
-                    'pmi_id'    => $petugas->id_pmi,
+                    // 'pmi_id'    => $petugas->id_pmi,
+                    'pmi_id'    => $data['pmi_id'],
                     'slug'      => $slug,
                     'goldar'    => $data['goldar'],
                     'jumlah'    =>  $jmllama + $jmlbaru,
@@ -72,7 +73,7 @@ class Stok extends BaseController
                 // jika  tidak sama maka baru dibuat record stok baru
             } else {
                 $stok->save([
-                    'pmi_id'    => $petugas->id_pmi,
+                    'pmi_id'    => $data['pmi_id'],
                     'slug'      => $slug,
                     'goldar'    => $data['goldar'],
                     'jumlah'    => $data['jumlah']
@@ -95,6 +96,7 @@ class Stok extends BaseController
         $data = [
             'darah'         => $stok->getStok($id),
             'validation'    => \config\Services::validation(),
+            'pmi'           => $pmi->getAllPMI(),
             'petugas'       => $pmi->getPMI()
         ];
         return view('admin/stok-darah-edit', $data);
@@ -119,7 +121,8 @@ class Stok extends BaseController
         if ($this->validate($rules)) {
             $stok->save([
                 'id_darah'  => $id,
-                'pmi_id'    => $petugas->id_pmi,
+                // 'pmi_id'    => $petugas->id_pmi,
+                'pmi_id'    => $data['pmi_id'],
                 'slug'      => $slug,
                 'goldar'    => $data['goldar'],
                 'jumlah'    => $data['jumlah']

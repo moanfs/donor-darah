@@ -75,41 +75,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-column" class="form-label">Nama PMI</label>
-                                        <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $darah['nama_pmi'] ?>" disabled>
+                                        <!-- <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $darah['nama_pmi'] ?>" disabled> -->
+                                        <select class="form-select " id="basicSelect" name="pmi_id">
+                                            <?php foreach ($pmi as $data) : ?>
+                                                <option value="<?= $data['id_pmi'] ?>" <?= ($data['id_pmi'] == $darah['pmi_id']) ? 'selected' : ''; ?>><?= $data['nama_pmi'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <!-- <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-column" class="form-label">Kontak PMI</label>
                                         <input type="text" id="last-name-column" class="form-control" name="kontak" value="<?= $darah['kontak'] ?>" disabled>
                                     </div>
-                                </div>
-
-                                <div class="col-md-12 col-12">
-                                    <div class="form-group mandatory">
-                                        <label for="last-name-colum" class="form-label">Alamat PMI</label>
-                                        <input type="text" id="last-name-column" class="form-control" name="alamat" value="<?= $darah['alamat'] ?>" disabled>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">Edit Stok Darah</button>
+                                        <a data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-danger text-nowrap  me-1 mb-1">Hapus Stok Darah</a>
                                     </div>
                                 </div>
 
-                                <?php if ($petugas->id_pmi == $darah['pmi_id']) : ?>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Edit Stok Darah</button>
-                                            <a data-bs-toggle="modal" data-bs-target="#delete" class="btn btn-danger text-nowrap  me-1 mb-1">Hapus Stok Darah</a>
-                                        </div>
-                                    </div>
-                                <?php else : ?>
-                                    <div class="row">
-                                        <div class="c">
-                                            <a class="btn btn-primary me-1 mb-1 " data-bs-toggle="tooltip" data-bs-placement="top" title="Anda Tidak ada akses untuk Edit">Edit Stok Darah</a>
-                                            <a class="btn btn-danger me-1 mb-1 " data-bs-toggle="tooltip" data-bs-placement="top" title="Anda Tidak ada akses untuk Hapus">Hapus Stok Darah</a>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
                         </form>
                     </div>
                 </div>

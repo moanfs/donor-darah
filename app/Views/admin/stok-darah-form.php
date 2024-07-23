@@ -71,13 +71,20 @@
                                     <!-- </div> -->
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-12 col-12">
                                     <div class="form-group mandatory">
-                                        <label for="last-name-column" class="form-label">Nama PMI</label>
-                                        <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $petugas->nama_pmi ?>" disabled>
+                                        <label for="last-name-column" class="form-label">PMI Penyedia</label>
+                                        <!-- <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $petugas->nama_pmi ?>" disabled> -->
+                                        <fieldset class="form-group">
+                                            <select class="form-select " id="basicSelect" name="pmi_id">
+                                                <?php foreach ($pmi as $data) : ?>
+                                                    <option value="<?= $data['id_pmi'] ?>" <?= ($data['id_pmi'] == $petugas->id_pmi) ? 'selected' : ''; ?>><?= $data['nama_pmi'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </fieldset>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <!-- <div class="col-md-6 col-12">
                                     <div class="form-group mandatory">
                                         <label for="last-name-column" class="form-label">Kontak PMI</label>
                                         <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $petugas->kontak ?>" disabled>
@@ -89,7 +96,7 @@
                                         <label for="last-name-colum" class="form-label">Alamat PMI</label>
                                         <input type="text" id="last-name-column" class="form-control" name="nama_pmi" value="<?= $petugas->alamat ?>" disabled>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-end">
