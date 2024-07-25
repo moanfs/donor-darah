@@ -12,7 +12,7 @@ class StokModel extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
         'pmi_id', 'goldar', 'slug', 'jumlah', 'kontak2', 'created_at', 'deleted_at', 'updated_at'
@@ -35,6 +35,18 @@ class StokModel extends Model
         return $this->db->table('stok_darah')
             ->join('pmi', 'pmi.id_pmi = stok_darah.pmi_id')
             ->join('kecamatan', 'kecamatan.id_kecamatan=pmi.kec_id')
+            ->where('stok_darah.deleted_at', null)
+            ->orderBy('stok_darah.id_darah', 'DESC')
+            // ->groupBy('goldar')
+            ->get()->getResultArray();
+    }
+
+    public function getStokDelete()
+    {
+        return $this->db->table('stok_darah')
+            ->join('pmi', 'pmi.id_pmi = stok_darah.pmi_id')
+            ->join('kecamatan', 'kecamatan.id_kecamatan=pmi.kec_id')
+            ->where('stok_darah.deleted_at IS NOT NULL', null, false)
             ->orderBy('stok_darah.id_darah', 'DESC')
             // ->groupBy('goldar')
             ->get()->getResultArray();

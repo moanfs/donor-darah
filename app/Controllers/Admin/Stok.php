@@ -17,6 +17,16 @@ class Stok extends BaseController
         return view('admin/stok-darah', $data);
     }
 
+    // data stok yang di hapus
+    public function hapus()
+    {
+        $stok = new StokModel();
+        $data = [
+            'stok' => $stok->getStokDelete()
+        ];
+        return view('admin/stok-darah-hapus', $data);
+    }
+
     public function new()
     {
         $pmi = new PmiModel();
@@ -136,6 +146,28 @@ class Stok extends BaseController
             ];
             return view('admin/stok-darah-edit', $data);
         }
+    }
+
+    public function softDelete($id)
+    {
+        $pmi = new PmiModel();
+        $stok = new StokModel();
+        $data = [
+            'darah'         => $stok->getStok($id),
+            'validation'    => \config\Services::validation(),
+            'pmi'           => $pmi->getAllPMI(),
+            'petugas'       => $pmi->getPMI()
+        ];
+        return view('admin/stok-darah-edit-hapus', $data);
+    }
+    public function refund($id)
+    {
+        $stok = new StokModel();
+        $stok->save([
+            'id_darah'  => $id,
+            'deleted_at' => null
+        ]);
+        return redirect()->to(site_url('admin/stok-darah'))->with('message', 'Stok darah berhasil Dikembalikan');
     }
 
     public function min($id)

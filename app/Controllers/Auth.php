@@ -53,7 +53,7 @@ class Auth extends BaseController
                         return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');
                     }
                 } else {
-                    return redirect()->back()->withInput()->with('message', 'Akun Anda Di Matikan!!');
+                    return redirect()->back()->withInput()->with('message', 'Akun Anda Di Matikan, <br> Silahkan Hubungi Pihak PMI Ke Nomor (022) 4207052 untuk Pengembalian Akun!!');
                 }
             } else {
                 return redirect()->back()->withInput()->with('message', 'Email atau password anda salah!!');

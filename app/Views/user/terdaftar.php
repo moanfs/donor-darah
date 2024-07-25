@@ -41,12 +41,14 @@
                                 <td><?= $value['nomor']; ?></td>
                                 <td><?= date("d-m-Y", strtotime($value['date'])) ?></td>
                                 <td><?= $value['time'] . '-' . $value['time_end']; ?> WIB</td>
-                                <?php $batas =  strtotime($value['date'] . ' ' . $value['time']) ?>
-                                <?php if ($batas <= time()) : ?>
-                                    <td>Selesai</td>
+                                <?php if ($value['status'] == 1) : ?>
+                                    <td>Sudah Donor</td>
+                                <?php elseif ($value['status'] == 2) : ?>
+                                    <td>Sakit "Tidak Bisa Donor"</td>
                                 <?php else : ?>
-                                    <td>Belum Dimulai</td>
+                                    <td>Tidak/Belum Hadir</td>
                                 <?php endif; ?>
+
                                 <td><a href="<?= site_url('jadwal-donor/terdaftar/') . $value['id_daftar']; ?>" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a></td>
                             </tr>
                         <?php endforeach; ?>

@@ -10,13 +10,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Stok Darah Donor Tree</h3>
+                <h3>Stok Darah Yang Dihapus</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= site_url('admin'); ?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Tabel Stok Darah</li>
+                        <li class="breadcrumb-item active" aria-current="page">Tabel History Hapus</li>
                     </ol>
                 </nav>
             </div>
@@ -30,11 +30,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header col-sm-12 d-flex justify-content-between">
-                        <h4 class="card-title">Tabel Stok Darah</h4>
-                        <div>
-                            <a href="<?= site_url('admin/stok-darah-hapus'); ?>" class="btn btn-danger"><i class="bi bi-trash"></i> History Hapus</a>
-                            <a href="<?= site_url('admin/form-stok-darah'); ?>" class="btn btn-primary"><i class="bi bi-plus-lg"></i> stok Darah</a>
-                        </div>
+                        <h4 class="card-title">Tabel Stok Darah Yang Dihapus</h4>
                     </div>
                     <!-- table responsive -->
                     <div class="table-responsive p-3">
@@ -66,8 +62,7 @@
                                         <td><?= $value['nama_pmi']; ?></td>
                                         <td><?= $value['kontak']; ?></td>
                                         <td>
-                                            <!-- <a href="<?= site_url('admin/stok-darah/show/') . $value['id_darah']; ?>" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i></a> -->
-                                            <a href="<?= site_url('admin/stok-darah/edit/') . $value['id_darah']; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
+                                            <a href="<?= site_url('admin/stok-darah/edit/hapus/') . $value['id_darah']; ?>" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -87,9 +87,12 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
 
     //stok darah
     $routes->get('stok-darah', 'Stok::index');
+    $routes->get('stok-darah-hapus', 'Stok::hapus');
     $routes->get('stok-darah/show/(:num)', 'Stok::show/$1');
     $routes->get('stok-darah/edit/(:num)', 'Stok::edit/$1');
     $routes->post('stok-darah/edit/(:num)', 'Stok::update/$1');
+    $routes->get('stok-darah/edit/hapus/(:num)', 'Stok::softDelete/$1');
+    $routes->post('stok-darah/edit/hapus/(:num)', 'Stok::refund/$1');
     $routes->post('stok-darah/min/(:num)', 'Stok::min/$1');
     $routes->get('form-stok-darah', 'Stok::new');
     $routes->post('add-darah', 'Stok::save');
